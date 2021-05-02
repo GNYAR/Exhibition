@@ -1,9 +1,10 @@
-EXHIBITION
+## [EXHIBITION](http://suiio.nutc.edu.tw)
 
-- 20210331 index_v1
-- 20210408 register_v1
-- 20210408 Login_v1
-- 20210410 exh_v1
-- 20210412 exh_v2
-- 20210423 edit_v1 -acc
-- 20210430 pro_v1
+|  Date  |   Views   | Version | Note |
+|20210331|   index   |    v1   ||
+|20210408|  register |    v1   ||
+|20210408|   Login   |    v1   ||
+|20210410|    exh    |    v1   ||
+|20210412|    exh    |    v2   ||
+|20210423|    edit   |    v1   |  acc |
+|20210430|    pro    |    v1   ||
