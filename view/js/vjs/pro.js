@@ -1,0 +1,168 @@
+let isCollect = false;
+let account = "";
+// 取得GET值
+let eID = new URL(location.href).searchParams.get('eID');
+let pID = new URL(location.href).searchParams.get('pID');
+// 是否登入
+$.ajax({
+    type: "POST",
+    url: "../../api/command.php",
+    data: {
+        key: 110
+    },
+    success: (response) => {
+        let res = JSON.parse(response);
+        if(res.stateCode == 100){
+            $("#register").hide();
+            $("#login").hide();
+            $("#account").text(res.result[0]);
+            account = res.result[0];
+            $.ajax({
+                type: "POST",
+                url: "../../api/command.php",
+                data: {
+                    key: 513,
+                    acc: account,
+                    eID: eID,
+                    pID: pID
+                },
+                success: (response) => {
+                    let res = JSON.parse(response);
+                    if(res.stateCode == 100){
+                        isCollect = true;
+                        $("#collect")
+                            .text("取消收藏")
+                            .removeClass("btn-primary")
+                            .addClass("btn-outline-primary");
+                    }else{
+                        isCollect = false;
+                        $("#collect").text("＋收藏");
+                    }
+                }
+            });
+        }else{
+            $("#acc").hide();
+            $("#logout").hide();
+            $("#collect").hide();
+        }
+    }
+});
+// 登出
+$("#logout").click(()=>{
+    $.ajax({
+        type: "POST",
+        url: "../../api/command.php",
+        data: {
+            key: 120
+        },
+        success: (response) => {
+            console.log(response);
+            account = "";
+            alert("帳號已登出！");
+        }
+    })
+});
+// 作品資訊
+$.ajax({
+    type: "POST",
+    url: "../../api/command.php",
+    data: {
+        key: 502,
+        eID: eID,
+        pID: pID
+    },
+    success: (response) => {
+        let res = JSON.parse(response).result[0];
+        console.log(res);
+        $("#exh")
+            .attr("href", "exh.php?eID=" + eID)
+            .text(res.eName);
+        $("#pName").text(res.pName);
+        $("#author").text(res.author);
+        $("#date").text(res.date);
+        $("#desc").text(res.descript);
+        // 照片輪播
+        $.ajax({
+            type: "POST",
+            url: "../../api/command.php",
+            data: {
+                key: 520,
+                eID: eID,
+                pID: pID
+            },
+            success: (response) => {
+                let files = JSON.parse(response).result;
+                console.log(files);
+                let cnt = 0;
+                files.forEach( v => {
+                    $(".carousel-inner").append(
+                        $("<div></div>")
+                            .addClass("carousel-item" + (cnt == 0 ? " active" : ""))
+                            .append(
+                                $("<img></img>")
+                                    .attr("src", "../img/" + res.eID + "/pro_" + res.pID + "/" + v)
+                                    .addClass("d-block w-100")
+                                    .attr("alt", "pro")
+                                )
+                    );
+                    $(".carousel-indicators").append(
+                        $("<button></button>")
+                            .attr("type", "button")
+                            .attr("data-bs-target", "#imgCarousel")
+                            .attr("data-bs-slide-to", cnt)
+                            .attr("aria-current", "true")
+                            .attr("aria-label", "Slide " + cnt + 1)
+                            .addClass((cnt++ == 0 ? "active" : ""))
+                    );
+                });
+            }
+        });
+    }
+});
+// 展覽收藏
+$("#collect").click(() => {
+    if(isCollect){
+        $.ajax({
+            type: "POST",
+            url: "../../api/command.php",
+            data: {
+                key: 512,
+                eID: eID,
+                pID: pID,
+                acc: account
+            },
+            success: (response) => {
+                let res = JSON.parse(response).stateCode;
+                if(res == 100){
+                    isCollect = false;
+                    $("#collect")
+                        .text("＋收藏")
+                        .removeClass("btn-outline-primary")
+                        .addClass("btn-primary");
+                }
+            }
+        });
+    }else{
+        $.ajax({
+            type: "POST",
+            url: "../../api/command.php",
+            data: {
+                key: 510,
+                eID: eID,
+                pID: pID,
+                acc: account
+            },
+            success: (response) => {
+                let res = JSON.parse(response).stateCode;
+                if(res == 100){
+                    isCollect = true;
+                    $("#collect")
+                        .text("取消收藏")
+                        .removeClass("btn-primary")
+                        .addClass("btn-outline-primary");
+                }
+            }
+        });
+    }
+    this.blur();
+});
