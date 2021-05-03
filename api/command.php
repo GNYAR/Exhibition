@@ -45,10 +45,12 @@ switch ($key) {
         }
         break;
     case 120: // 登出
+        isLogin();
         unset($_SESSION['username']);
         echo  toJSON(100, array(null));
         break;
-    case 130: // 更新會員資料
+    case 130: // (130, id, acc, pw, data)更新會員資料
+        isLogin();
         // 序列化
         $data = json_decode(getPOST('data'), true);
         $cnt = 0;
@@ -118,7 +120,6 @@ switch ($key) {
         echo $json;
         break;
     case 201: // (201, id, acc) 取得帳號資訊
-        isLogin();
         $id = getPOST('id');
         // 判斷身分
         if ($id == 's') {
@@ -170,7 +171,7 @@ switch ($key) {
         echo $json;
         break;
     case 301: // (301) 取得所有展覽資訊
-        $sql = "SELECT * FROM `exhibition` AS A JOIN `sponsor` AS B ON A.`sAccount` = B.`sAccount` ORDER BY A.`start` DESC;";
+        $sql = "SELECT A.*, B.`sName`, B.`sAccount` FROM `exhibition` AS A JOIN `sponsor` AS B ON A.`sAccount` = B.`sAccount` ORDER BY A.`start` DESC;";
         $res = query($db_link, $sql, array(null));
         if (gettype($res) != 'array') {
             // 10 SQL錯誤
@@ -179,16 +180,12 @@ switch ($key) {
             // 98 查無資料
             $json = toJSON(98, array("尚未有任何展覽"));
         } else {
-            foreach ($res as $key => $value) {
-                unset($res[$key]['sAccount']);
-                unset($res[$key]['password']);
-            }
             $json = toJSON(100, $res);
         }
         echo $json;
         break;
     case 302: // (302, eID) 取得展覽資訊
-        $sql = "SELECT * FROM `exhibition` AS A JOIN `sponsor` AS B ON A.`sAccount` = B.`sAccount` WHERE `eID` = ?;";
+        $sql = "SELECT A.*, B.`sName`, B.`sAccount` FROM `exhibition` AS A JOIN `sponsor` AS B ON A.`sAccount` = B.`sAccount` WHERE `eID` = ?;";
         $res = query($db_link, $sql, array(getPOST('eID')));
         if (gettype($res) != 'array') {
             // 10 SQL錯誤
@@ -198,7 +195,20 @@ switch ($key) {
             $json = toJSON(98, array("Data Not Found"));
         } else {
             $res = $res[0];
-            unset($res['password']);
+            $json = toJSON(100, $res);
+        }
+        echo $json;
+        break;
+    case 303: // (303, acc) 取得主辦方展覽資訊
+        $sql = "SELECT A.*, B.`sName`, B.`sAccount` FROM `exhibition` AS A JOIN `sponsor` AS B ON A.`sAccount` = B.`sAccount` WHERE A.`sAccount` = ?;";
+        $res = query($db_link, $sql, array(getPOST('acc')));
+        if (gettype($res) != 'array') {
+            // 10 SQL錯誤
+            $json = toJSON(10, $res->errorInfo);
+        } else if ($res == null) {
+            // 98 查無資料
+            $json = toJSON(98, array("Data Not Found"));
+        } else {
             $json = toJSON(100, $res);
         }
         echo $json;
@@ -271,6 +281,41 @@ switch ($key) {
         }
         $dir->close();
         echo toJSON(100, $arr);
+        break;
+    case 330: // (330, eID, data)更新展覽資訊
+        isLogin();
+        // 序列化
+        $data = json_decode(getPOST('data'), true);
+        $cnt = 0;
+        $fields = "";
+        foreach ($data as $key => $value) {
+            $fields .= ($cnt++ == 0 ? "" : ", ");
+            $fields .= "`$key` = '$value'";
+        }
+        // 更新
+        $sql = "UPDATE `exhibition` SET $fields WHERE `eID`=?";
+        $res = insert($db_link, $sql, array(getPOST('eID')));
+        if (gettype($res) != 'array') {
+            // 10 SQL錯誤
+            $json = toJSON(10, $res->errorInfo);
+        } else {
+            // 100 成功｜89 失敗
+            $json = toJSON(($res[0] ? 100 : 89), $res);
+        }
+        echo $json;
+        break;
+    case 340: // (340, eID) 刪除作品
+        isLogin();
+        $sql = "DELETE FROM `exhibition` WHERE `eID`=?";
+        $res = insert($db_link, $sql, array(getPOST('eID')));
+        if (gettype($res) != 'array') {
+            // 10 SQL錯誤
+            $json = toJSON(10, $res->errorInfo);
+        } else {
+            // 100 成功｜89 失敗
+            $json = toJSON(($res[0] ? 100 : 89), $res);
+        }
+        echo $json;
         break;
         // 400 參加紀錄
     case 400: // (400, acc, eID) 新增參加紀錄
@@ -435,6 +480,41 @@ switch ($key) {
         }
         $dir->close();
         echo toJSON(100, $arr);
+        break;
+    case 530: // (530, eID, pID, data) 更新作品資訊
+        isLogin();
+        // 序列化
+        $data = json_decode(getPOST('data'), true);
+        $cnt = 0;
+        $fields = "";
+        foreach ($data as $key => $value) {
+            $fields .= ($cnt++ == 0 ? "" : ", ");
+            $fields .= "`$key` = '$value'";
+        }
+        // 更新
+        $sql = "UPDATE `product` SET $fields WHERE `eID`=? AND `pID`=?";
+        $res = insert($db_link, $sql, array(getPOST('eID'), getPOST('pID')));
+        if (gettype($res) != 'array') {
+            // 10 SQL錯誤
+            $json = toJSON(10, $res->errorInfo);
+        } else {
+            // 100 成功｜89 失敗
+            $json = toJSON(($res[0] ? 100 : 89), $res);
+        }
+        echo $json;
+        break;
+    case 540: // (540, eID, pID) 刪除作品
+        isLogin();
+        $sql = "DELETE FROM `product` WHERE `eID`=? AND `pID`=?;";
+        $res = insert($db_link, $sql, array(getPOST('eID'), getPOST('pID')));
+        if (gettype($res) != 'array') {
+            // 10 SQL錯誤
+            $json = toJSON(10, $res->errorInfo);
+        } else {
+            // 100 成功｜89 失敗
+            $json = toJSON(($res[0] ? 100 : 89), $res);
+        }
+        echo $json;
         break;
     case 600: // (600, acc, eID, pID) 作品投票
         isLogin();

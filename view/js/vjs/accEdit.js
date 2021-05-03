@@ -44,6 +44,7 @@ $.ajax({
                 },
                 success: (response) => {
                     let info = JSON.parse(response).result;
+                    console.log(info);
                     // 取得GET值
                     let context = $("<div></div>")
                         .addClass("p-4 mx-auto")
@@ -150,21 +151,36 @@ $.ajax({
                             .attr("id", "pw")
                             .addClass("list-group-item collapse")
                             .append(
-                                setInput('新密碼', 'password', 'password', 30, 12),
-                                setInput('確認密碼', 'pw2', 'password', 30, 12)
+                                setInput('新密碼', 'password', 'password', 30, 12, false),
+                                setInput('確認密碼', 'pw2', 'password', 30, 12, false)
                             );
-                        let name = setInput('單位名稱', 'sName', 'text', 30, 12, info.sName);
-                        let address = setInput('地址', 'address', 'text', 0, 12, info.address);
-                        let phone = setInput("電話", "phone", "tel", 0, 12, info.phone);
+                        let name = setInput('單位名稱', 'sName', 'text', 30, 12, false, info.sName);
+                        let address = setInput('地址', 'address', 'text', 0, 12, false, info.address);
+                        let phone = setInput("電話", "phone", "tel", 0, 12, false, info.phone);
                         phone.find("input")
                             .attr("placeholder", "04-22190000")
                             .attr("pattern", "[0-9]{2,4}-[0-9]{4,8}");
+                        let intro = setInput('簡介標題', 'title', 'text', 30, 12, false, info.title);
                         let confirm = setInput('身分驗證', 'confirm', 'password', 30, 12).addClass("mt-5");
                         confirm.find("input")
                             .attr("placeholder", "目前密碼");
+                        let descript = $("<div></div>")
+                            .addClass("col-12")
+                            .append(
+                                $("<label></label>")
+                                    .attr("for", "textarea")
+                                    .addClass("form-label")
+                                    .text("簡介內容"),
+                                $("<textarea></textarea>")
+                                    .addClass("form-control")
+                                    .attr("id", "textarea")
+                                    .attr("name", "descript")
+                                    .attr("rows", "3")
+                                    .val(info.descript)
+                        );
                         // 加入表單
                         list.append(btn_pw, li_pw);
-                        form.append(name, address, phone, list, confirm);
+                        form.append(name, address, phone, list, intro, descript, confirm);
                     }
                     let submit = $("<div></div>")
                         .addClass("col-12")
@@ -291,19 +307,23 @@ $.ajax({
                                 res = JSON.parse(response).result;
                                 if (res && state == 100) {
                                     alert("修改成功！");
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "../../api/command.php",
-                                        data: {
-                                            key: 120
-                                        },
-                                        success: (response) => {
-                                            console.log(response);
-                                            account = "";
-                                            alert("帳號已登出！");
-                                            location.href = "index.php";
-                                        }
-                                    })
+                                    if($("#password").val() != ""){
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "../../api/command.php",
+                                            data: {
+                                                key: 120
+                                            },
+                                            success: (response) => {
+                                                console.log(response);
+                                                account = "";
+                                                alert("帳號已登出！");
+                                                location.href = "index.php";
+                                            }
+                                        });
+                                    }else{
+                                        location.href = "sAcc.php";
+                                    }
                                 }else if(state == 99){
                                     $("#confirm")
                                         .addClass("is-invalid")
