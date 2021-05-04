@@ -31,6 +31,7 @@ switch ($key) {
                 unset($res['password']);
                 $json = toJSON(100, $res);
                 $_SESSION['username'] = getPOST('acc');
+                $_SESSION['role'] = getPOST('id');
             } else {
                 // 99 密碼錯誤
                 $json = toJSON(99, array("Wrong Password"));
@@ -40,13 +41,14 @@ switch ($key) {
         break;
     case 110: // 是否登入
         if(isLogin()){
-            $json = toJSON(100, array($_SESSION['username']));
+            $json = toJSON(100, array($_SESSION['username'], $_SESSION['role']));
             echo $json;
         }
         break;
     case 120: // 登出
         isLogin();
         unset($_SESSION['username']);
+        unset($_SESSION['role']);
         echo  toJSON(100, array(null));
         break;
     case 130: // (130, id, acc, pw, data)更新會員資料

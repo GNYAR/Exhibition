@@ -11,6 +11,9 @@
 </head>
 <?php
     session_start();
+    if(isset($_SESSION['role']) && $_SESSION['role'] == 's') {
+        header('location: sAcc.php');
+    }
 ?>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light px-2 px-sm-5">

@@ -27,7 +27,6 @@
                         </svg>
                         <span class="align-middle" id="account"></span>
                     </a>
-                    <a class="nav-link" href="index.php" id="home"><span class="align-middle">回首頁</span></a>
                     <a class="nav-link" href="index.php" id="logout"><span class="align-middle">登出</span></a>
                 </div>
             </div>
