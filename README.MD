@@ -11,3 +11,4 @@
 | 20210430 |    pro    |    v1   |  |
 | 20210503 |  accEdit  |    v2   | sponsor |
 | 20210504 |  exhAdmin |    v1   |  |
+| 20210504 |   sponsor |    v1   |  |

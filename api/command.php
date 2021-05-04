@@ -202,7 +202,7 @@ switch ($key) {
         echo $json;
         break;
     case 303: // (303, acc) 取得主辦方展覽資訊
-        $sql = "SELECT A.*, B.`sName`, B.`sAccount` FROM `exhibition` AS A JOIN `sponsor` AS B ON A.`sAccount` = B.`sAccount` WHERE A.`sAccount` = ?;";
+        $sql = "SELECT A.*, B.`sName`, B.`sAccount` FROM `exhibition` AS A JOIN `sponsor` AS B ON A.`sAccount` = B.`sAccount` WHERE A.`sAccount` = ? ORDER BY A.`start` DESC;";
         $res = query($db_link, $sql, array(getPOST('acc')));
         if (gettype($res) != 'array') {
             // 10 SQL錯誤

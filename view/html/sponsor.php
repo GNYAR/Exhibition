@@ -5,8 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="../css/utility.css">
-    <title>展覽資訊</title>
+    <title>主辦方資訊</title>
 </head>
 <?php
     session_start();
@@ -20,8 +21,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link" href="#exh" id="info"><span class="align-middle">展覽資訊</span></a>
-                    <a class="nav-link" href="#product" id="pro"><span class="align-middle">作品集</span></a>
+                    <a class="nav-link" href="#exh" id="info"><span class="align-middle">主辦方資訊</span></a>
+                    <a class="nav-link" href="#product" id="exh"><span class="align-middle">展覽集</span></a>
                     <a class="nav-link" href="register.php?id=m" id="register"><span class="align-middle">註冊</span></a>
                     <a class="nav-link" href="login.php" id="login"><span class="align-middle">登入</span></a>
                     <a class="nav-link" href="acc.php" id="acc">
@@ -36,48 +37,15 @@
         </div>
     </nav>
     <div class="container-sm">
-        <div id="exh">
-            <div class="row py-4 g-1">
-                <div class="col-12 d-flex flex-wrap">
-                    <div>
-                        <a class="btn btn-secondary rounded-pill py-0 mb-2" id="sponsor" target="_blank">主辦方</a>
-                    </div>
-                    <div class= "ms-auto">
-                        <button class="btn btn-primary rounded-pill py-0 mb-2" id="collect">
-                            ＋收藏
-                        </button>
-                    </div>
-                </div>
-                <div class="col-12 p-1 bg-dark">
-                    <div id="imgCarousel" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <!-- <button type="button" data-bs-target="#imgCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#imgCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button> -->
-                        </div>
-                        <div class="carousel-inner">
-                            <!-- <div class="carousel-item">
-                                <img src="../img/2/exh.jpg" alt="exh" class="d-block w-100">
-                            </div> -->
-                        </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#imgCarousel" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#imgCarousel" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
-                    </div>
-                </div>
-            </div>
+        <div class="my-5" id="exh">
             <div class="row row-cols-1 g-2">
                 <div class="col">
-                    <h1 id="eName">展覽名稱</h1>
+                    <h1 id="sName">國立臺中科技大學</h1>
                 </div>
                 <div class="col">
                     <ul>
-                        <li id="date">日期：2021-03-09～2021-03-10</li>
-                        <li id="place">地點：中商大樓圖書館門口</li>
+                        <li id="address">地址：台中市北區三民路三段000號</li>
+                        <li id="phone">電話：04-22190000</li>
                     </ul>
                 </div>
                 <div class="col p-3">
@@ -88,8 +56,8 @@
                 </div>
             </div>
         </div>
-        <div class="my-5" id="product">
-            <h3>作品集</h3>
+        <div class="my-5" id="exhibition">
+            <h3>展覽集</h3>
             <!-- <div class="row row-cols-1 g-3">
                 <div class="col px-4">
                     <div class="card border-dark overflow-hidden">
@@ -124,6 +92,6 @@
     </div>
     <script type="text/javascript" src="../js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
-    <script type="text/javascript" src="../js/vjs/exh.js"></script>
+    <script type="text/javascript" src="../js/vjs/sponsor.js"></script>
 </body>
 </html>

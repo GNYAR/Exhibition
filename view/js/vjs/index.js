@@ -83,14 +83,14 @@ $.ajax({
                         .addClass("text-truncate")
                         .append(
                             $("<i></i>")
-                                .addClass("bi bi-calendar2-minus-fill me-1"),
+                                .addClass("bi bi-calendar2-minus-fill me-2"),
                             e["start"] + "～" + e['end']    
                     ),
                     $("<div></div>")
                         .addClass("text-truncate")
                         .append(
                             $("<i></i>")
-                                .addClass("bi bi-geo-alt-fill me-1"),
+                                .addClass("bi bi-geo-alt-fill me-2"),
                             e["ePlace"]    
                     )
                 );
