@@ -12,5 +12,6 @@
 | 20210503 |  accEdit  |    v2   | sponsor |
 | 20210504 |  exhAdmin |    v1   |  |
 | 20210504 |   sponsor |    v1   |  |
+| 20210505 |     -     |    v1   | PW Hash |
 
 ![image](web.jpg)
