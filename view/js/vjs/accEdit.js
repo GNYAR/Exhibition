@@ -17,8 +17,8 @@ let setInput = (text, name, type, maxlen, col_sm, req, def) => {
     return div;
 }
 
-let id = new URL(location.href).searchParams.get('id');
-let account = "test";
+let id = "";
+let account = "";
 
 // 是否登入
 $.ajax({
@@ -34,6 +34,7 @@ $.ajax({
             $("#login").hide();
             $("#account").text(res.result[0]);
             account = res.result[0];
+            id = res.result[1];
             $.ajax({
                 type: "POST",
                 url: "../../api/command.php",
@@ -44,7 +45,6 @@ $.ajax({
                 },
                 success: (response) => {
                     let info = JSON.parse(response).result;
-                    console.log(info);
                     // 取得GET值
                     let context = $("<div></div>")
                         .addClass("p-4 mx-auto")
@@ -290,7 +290,6 @@ $.ajax({
                         let confirm = data.confirm;
                         delete data.pw2;
                         delete data.confirm;
-                        console.log(data, confirm);
                         $.ajax({
                             type: "POST",
                             url: "../../api/command.php",
@@ -315,14 +314,13 @@ $.ajax({
                                                 key: 120
                                             },
                                             success: (response) => {
-                                                console.log(response);
                                                 account = "";
                                                 alert("帳號已登出！");
                                                 location.href = "index.php";
                                             }
                                         });
                                     }else{
-                                        location.href = "sAcc.php";
+                                        location.href = "index.php";
                                     }
                                 }else if(state == 99){
                                     $("#confirm")

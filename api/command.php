@@ -7,6 +7,7 @@ require_once("inc/sql.php");
 require_once("inc/toJSON.php");
 require_once("inc/getPOST.php");
 require_once("inc/isLogin.php");
+require_once("inc/salt.php");
 $key = getPOST('key');
 switch ($key) {
     case 100: // (100, id, acc, pw) 登入
@@ -26,7 +27,7 @@ switch ($key) {
             $json = toJSON(98, array("Data Not Found"));
         } else {
             $res = $res[0];
-            if (getPOST('pw') == $res['password']) {
+            if (hash_equals($res['password'], crypt(getPOST('pw'), $res['password']))) {
                 // 100 成功登入
                 unset($res['password']);
                 $json = toJSON(100, $res);
@@ -59,7 +60,13 @@ switch ($key) {
         $fields = "";
         foreach ($data as $key => $value) {
             $fields .= ($cnt++ == 0 ? "" : ", ");
-            $fields .= "`$key` = '$value'";
+            if($key == 'password') {
+                // password hash
+                $salt = salt();
+                $fields .= "`$key` = '".crypt($value, $salt)."'";
+            } else {
+                $fields .= "`$key` = '$value'";
+            }
         }
         // 身分驗證
         if (getPOST('id') == 's') {
@@ -79,7 +86,7 @@ switch ($key) {
             $json = toJSON(98, array("Data Not Found"));
         } else {
             $res = $res[0];
-            if (getPOST('pw') == $res['password']) {
+            if (hash_equals($res['password'], crypt(getPOST('pw'), $res['password']))) {
                 // 100 驗證成功
                 unset($res['password']);
                 // 更新
@@ -102,6 +109,9 @@ switch ($key) {
     case 200: // (200, id, data) 註冊
         // 序列化
         $data = json_decode(getPOST('data'), true);
+        // password hash
+        $salt = salt();
+        $data['password'] = crypt($data['password'], $salt);
         // 判斷身分
         if (getPOST('id') == 's') {
             $fields = ":sAccount, :password, :sName, :address, :phone";

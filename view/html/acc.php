@@ -48,7 +48,7 @@
                     <h3>會員資訊</h3>
                 </div>
                 <div class="ms-auto">
-                    <a class="btn btn-dark rounded-pill" href="accEdit.php?id=m">
+                    <a class="btn btn-dark rounded-pill" href="accEdit.php">
                         <i class="bi bi-pencil"></i>
                         &nbsp;更改資訊
                     </a>
