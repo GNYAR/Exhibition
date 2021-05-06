@@ -1,4 +1,4 @@
-## [EXHIBITION](http://suiio.nutc.edu.tw)
+## [EXHIBITION](http://suiio.nutc.edu.tw:2506)
 
 |    Date  |   Views   | Version |   Note  |
 | -------- |:---------:|:-------:| ------- |
