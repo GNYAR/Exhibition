@@ -38,6 +38,23 @@
         </div>
     </nav>
     <div class="container-lg">
+        <div class='p-4 d-flex'>
+            <div id='num'>
+            </div>
+            <div class='ms-auto'>
+                <select id="sponsor_filter" class="form-select form-select-sm ">
+                    <option value="" selected>篩選－主辦方</option>
+                </select>
+            </div>
+            <div class='ms-3'>
+                <select id="date_filter" class="form-select form-select-sm">
+                    <option value="" selected>篩選－展覽時間</option>
+                    <option value="future">即將開始</option>
+                    <option value="during">現正熱映</option>
+                    <option value="past">已結束</option>
+                </select>
+            </div>
+        </div>
         <!-- <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 py-4 g-4">
             <div class="col px-4">
                 <div class="card border-dark">
