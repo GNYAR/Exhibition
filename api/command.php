@@ -345,14 +345,14 @@ switch ($key) {
         break;
     case 401: // (401, acc) 取得會員紀錄
         isLogin();
-        $sql = "SELECT A.`aTime`, C.`eName`, C.`ePlace`, C.`eID` FROM `attend` AS A JOIN `exhibition` AS C ON A.`eID` = C.`eID` WHERE A.`account` = ? ORDER BY A.`aTime` DESC;";
+        $sql = "SELECT A.`aTime`, C.`eName`, C.`ePlace`, C.`eID`, B.`sAccount`, B.`sName` FROM `attend` AS A JOIN `exhibition` AS C ON A.`eID` = C.`eID` JOIN `sponsor` AS B ON C.`sAccount` = B.`sAccount` WHERE A.`account` = ? ORDER BY A.`aTime` DESC;";
         $res = query($db_link, $sql, array(getPOST('acc')));
         if (gettype($res) != 'array') {
             // 10 SQL錯誤
             $json = toJSON(10, $res->errorInfo);
         } else if ($res == null) {
             // 98 查無資料
-            $json = toJSON(100, array("尚未參觀任何展覽"));
+            $json = toJSON(98, array("尚未參觀任何展覽"));
         } else {
             $json = toJSON(100, $res);
         }
@@ -367,7 +367,7 @@ switch ($key) {
             $json = toJSON(10, $res->errorInfo);
         } else if ($res == null) {
             // 98 查無資料
-            $json = toJSON(100, array("尚未有會員參觀"));
+            $json = toJSON(98, array("尚未有會員參觀"));
         } else {
             $json = toJSON(100, $res);
         }
@@ -568,14 +568,14 @@ switch ($key) {
         break;
     case 601: // (601, acc) 會員投票紀錄
         isLogin();
-        $sql = "SELECT A.`vTime`, A.`eID`, C.`eName`, A.`pID`, B.`pName` FROM `vote` AS A JOIN `product` AS B ON A.`pID` = B.`pID` AND A.`eID`= B.`eID` JOIN `exhibition` AS C ON A.`eID` = C.`eID` WHERE A.`account` = ?;";
+        $sql = "SELECT A.`vTime`, A.`eID`, C.`eName`, A.`pID`, B.`pName`, B.`author` FROM `vote` AS A JOIN `product` AS B ON A.`pID` = B.`pID` AND A.`eID`= B.`eID` JOIN `exhibition` AS C ON A.`eID` = C.`eID` WHERE A.`account` = ?;";
         $res = query($db_link, $sql, array(getPOST('acc')));
         if (gettype($res) != 'array') {
             // 10 SQL錯誤
             $json = toJSON(10, $res->errorInfo);
         } else if ($res == null) {
             // 無紀錄
-            $json = toJSON(100, array("尚未投票給任何作品"));
+            $json = toJSON(98, array("尚未投票給任何作品"));
         } else {
             $json = toJSON(100, $res);
         }

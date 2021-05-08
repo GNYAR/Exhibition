@@ -25,8 +25,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link" href="#exh" id="info"><span class="align-middle">基本資料</span></a>
-                    <a class="nav-link" href="#product" id="col"><span class="align-middle">我的收藏</span></a>
+                    <a class="nav-link" href="#member" id="info"><span class="align-middle">基本資料</span></a>
+                    <a class="nav-link" href="#collect" id="col"><span class="align-middle">我的收藏</span></a>
+                    <a class="nav-link" href="#record" id="rec"><span class="align-middle">參展紀錄</span></a>
                     <a class="nav-link" href="register.php?id=m" id="register"><span class="align-middle">註冊</span></a>
                     <a class="nav-link" href="login.php" id="login"><span class="align-middle">登入</span></a>
                     <a class="nav-link" href="acc.php" id="acc">
@@ -42,7 +43,7 @@
         </div>
     </nav>
     <div class="container">
-        <div class="my-4" id="info">
+        <div class="my-4" id="member">
             <div class="d-flex">
                 <div>  
                     <h3>會員資訊</h3>
@@ -78,7 +79,7 @@
                 </div>
             </div>
         </div>
-        <div class="my-4" id="col">
+        <div class="my-4" id="collect">
             <h3>我的收藏</h3>
             <div class="mt-3 border border-2 border-dark rounded rounded-3 p-3">
                 <nav>
@@ -154,6 +155,77 @@
                                         </td>
                                         <td class="text-center">
                                             <button type="button" class="btn-close" aria-label="Close"></button>
+                                        </td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="my-4" id="record">
+            <h3>參展紀錄</h3>
+            <div class="mt-3 border border-2 border-dark rounded rounded-3 p-3">
+                <nav>
+                    <div class="nav nav-tabs row row-cols-2 row-cols-sm-6" id="nav-tab" role="tablist">
+                        <button class="nav-link col active" id="attend-tab" data-bs-toggle="tab" data-bs-target="#attend" type="button" role="tab" aria-controls="attend" aria-selected="true">入場紀錄</button>
+                        <button class="nav-link col" id="vote-tab" data-bs-toggle="tab" data-bs-target="#vote" type="button" role="tab" aria-controls="vote" aria-selected="false">投票紀錄</button>
+                    </div>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="attend" role="tabpanel" aria-labelledby="attend-tab">
+                        <div class="table-responsive">
+                            <table class="table text-nowrap align-middle">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">時間</th>
+                                        <th scope="col" colspan="2">
+                                            展覽資訊
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="att_list">
+                                    <!-- <tr>
+                                        <td>
+                                            2021-05-08 12:10
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-outline-dark border-0 w-100 text-start fw-bolder">2020商業經營系專題成果展</a>
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-secondary rounded-pill py-0">國立臺中科技大學 商業經營系</a>
+                                        </td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade" id="vote" role="tabpanel" aria-labelledby="vote-tab">
+                        <div class="table-responsive">
+                            <table class="table text-nowrap align-middle">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">時間</th>
+                                        <th scope="col" colspan = "2">
+                                            作品資訊
+                                        </th>
+                                        <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="vote_list">
+                                    <!-- <tr>
+                                        <td>
+                                            2021-05-08 12:10
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-outline-dark border-0 w-100 text-start fw-bolder">作品名稱</a>    
+                                        </td>
+                                        <td>
+                                            作者
+                                        </td>
+                                        <td>
+                                            <a class="btn btn-secondary rounded-pill py-0">2020商業經營系專題成果展</a>
                                         </td>
                                     </tr> -->
                                 </tbody>

@@ -123,7 +123,6 @@ $.ajax({
                     let json = JSON.parse(response);
                     let state = json.stateCode;
                     let res = json.result;
-                    console.log(res);
                     if(state == 98){
                         $("#pro_list").append(
                             $("<h5></h5>")
@@ -176,13 +175,111 @@ $.ajax({
                             );
                         });
                     }
-                    console.log(exhibitions);
+                }
+            });
+            // 入場紀錄
+            $.ajax({
+                type: "POST",
+                url: "../../api/command.php",
+                data: {
+                    key: 401,
+                    acc: account
+                },
+                success: (response) => {
+                    let json = JSON.parse(response);
+                    let state = json.stateCode;
+                    let res = json.result;
+                    if(state == 98){
+                        $("#att_list").append(
+                            $("<h5></h5>")
+                                .addClass("m-3 text-center")
+                                .text(res[0])
+                        );
+                    }else if(state == 100){
+                        res.forEach(element => {
+                            let time = element.aTime;
+                            let eName = element.eName;
+                            let eID = element.eID;
+                            let sName = element.sName;
+                            let sAcc = element.sAccount;
+                            $("#att_list").append(
+                                $("<tr></tr>")
+                                    .append(
+                                        $("<td></td>").text(time),
+                                        $("<td></td>").append(
+                                            $("<a></a>")
+                                                .addClass("btn btn-outline-dark border-0 w-100 text-start fw-bolder")
+                                                .attr("href", "exh.php?eID=" + eID)
+                                                .text(eName)
+                                        ),
+                                        $("<td></td>").append(
+                                            $("<a></a>")
+                                                .addClass("btn btn-secondary rounded-pill py-0")
+                                                .attr("href", "sponsor.php?sAcc=" + sAcc)
+                                                .text(sName)
+                                        )
+                                )
+                            );
+                        });
+                    }
+                }
+            });
+            // 入場紀錄
+            $.ajax({
+                type: "POST",
+                url: "../../api/command.php",
+                data: {
+                    key: 601,
+                    acc: account
+                },
+                success: (response) => {
+                    let json = JSON.parse(response);
+                    let state = json.stateCode;
+                    let res = json.result;
+                    console.log(json);
+                    if(state == 98){
+                        $("#vote_list").append(
+                            $("<h5></h5>")
+                                .addClass("m-3 text-center")
+                                .text(res[0])
+                        );
+                    }else if(state == 100){
+                        res.forEach(element => {
+                            let time = element.vTime;
+                            let eName = element.eName;
+                            let eID = element.eID;
+                            let pName = element.pName;
+                            let pID = element.pID;
+                            let author = element.author;
+                            $("#vote_list").append(
+                                $("<tr></tr>")
+                                    .append(
+                                        $("<td></td>").text(time),
+                                        $("<td></td>").append(
+                                            $("<a></a>")
+                                                .addClass("btn btn-outline-dark border-0 w-100 text-start fw-bolder")
+                                                .attr("href", "pro.php?eID=" + eID + "&pID=" + pID)
+                                                .text(pName)
+                                        ),
+                                        $("<td></td>").text(author),
+                                        $("<td></td>").append(
+                                            $("<a></a>")
+                                                .addClass("btn btn-secondary rounded-pill py-0")
+                                                .attr("href", "exh.php?eID=" + eID)
+                                                .text(eName)
+                                        )
+                                )
+                            );
+                        });
+                    }
                 }
             });
         }else{
             $("#acc").hide();
             $("#logout").hide();
+            $("#member").hide();
             $("#collect").hide();
+            $("#record").hide();
         }
     }
 });
