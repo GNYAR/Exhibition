@@ -98,7 +98,7 @@
             </div>
             <div id="pro">
                 <div class="table-responsive">
-                    <table class="table text-nowrap align-middle">
+                    <table class="table text-nowrap align-middle table-hover">
                         <thead>
                             <tr>
                                 <th scope="col" colspan = "2">

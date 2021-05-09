@@ -62,7 +62,6 @@ $.ajax({
             },
             success: (response) => {
                 let files = JSON.parse(response).result;
-                console.log(files);
                 let cnt = 0;
                 files.forEach( v => {
                     $(".carousel-inner").append(
@@ -107,7 +106,6 @@ $.ajax({
         let json = JSON.parse(response);
         let state = json.stateCode;
         let res = json.result;
-        console.log(res);
         if(state == 98){
             $("#pro_list").append(
                 $("<h5></h5>")
@@ -151,8 +149,8 @@ $.ajax({
 });
 // 刪除作品
 $(document).on('click', '#pro_del', function(event){
+    let value = $(this).val().split("_");
     if(confirm("確定移除【" + $("#pro" + $(this).val()).text() + "】?")){
-        let value = $(this).val().split("_");
         $.ajax({
             type: "POST",
             url: "../../api/command.php",

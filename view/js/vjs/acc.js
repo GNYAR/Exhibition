@@ -224,7 +224,7 @@ $.ajax({
                     }
                 }
             });
-            // 入場紀錄
+            // 投票紀錄
             $.ajax({
                 type: "POST",
                 url: "../../api/command.php",
@@ -289,6 +289,9 @@ $("#info").click(() => {
     $("#navbarNavAltMarkup").removeClass("show");
 });
 $("#col").click(() => {
+    $("#navbarNavAltMarkup").removeClass("show");
+});
+$("#rec").click(() => {
     $("#navbarNavAltMarkup").removeClass("show");
 });
 

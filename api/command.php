@@ -404,7 +404,7 @@ switch ($key) {
             $json = toJSON(10, $res->errorInfo);
         } else if ($res == null) {
             // 無紀錄
-            $json = toJSON(100, array(null));
+            $json = toJSON(98, array("尚未新增任何作品"));
         } else {
             $json = toJSON(100, $res);
         }
@@ -418,7 +418,7 @@ switch ($key) {
             $json = toJSON(10, $res->errorInfo);
         } else if ($res == null) {
             // 無紀錄
-            $json = toJSON(100, array(null));
+            $json = toJSON(98, array("此展覽尚未登入任何作品"));
         } else {
             $json = toJSON(100, $res);
         }
