@@ -133,46 +133,52 @@ $.ajax({
         eID: eID
     },
     success: (response) => {
+        let status = JSON.parse(response).stateCode;
         let res = JSON.parse(response).result;
-        let row = $("<div></div>").addClass("row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3");
-        res.forEach(e => {
-            if(e == null){
-                $("#info").hide();
-                $("#pro").hide();
-                $("#product").hide();
-            }else{
-                let pro = $("<div></div>")
-                    .addClass("col px-1 px-sm-2")
-                    .append(
-                        $("<div></div>")
-                            .addClass("card border-dark h-100")
-                            .append(
-                                $("<img></img>")
-                                    .addClass("card-img-top")
-                                    .attr("src", "../img/" + e.eID + "/pro_" + e.pID + "/pro.jpg")
-                                ,
-                                $("<div></div>")
-                                    .addClass("card-body")
-                                    .append(
-                                        $("<h5></h5>")
-                                            .addClass("card-title text-truncate")
-                                            .text(e.pName),
-                                        $("<p></p>")
-                                            .addClass("card-text ellipsis")
-                                            .text(e.descript),
-                                        $("<a></a>")
-                                            .addClass("stretched-link")
-                                            .attr("href", "pro.php?eID=" + e.eID + "&pID=" + e.pID)
-                                ),
-                                $("<div></div>")
-                                    .addClass("card-footer text-truncate")
-                                    .text(e.author)
-                            )
-                );
-                row.append(pro);
-            }
-        });
-        $("#product").append(row);
+        if (status == 100) {
+            let row = $("<div></div>").addClass("row row-cols-1 row-cols-sm-2 row-cols-lg-3 g-3");
+            res.forEach(e => {
+                if(e == null){
+                    $("#info").hide();
+                    $("#pro").hide();
+                    $("#product").hide();
+                }else{
+                    let pro = $("<div></div>")
+                        .addClass("col px-1 px-sm-2")
+                        .append(
+                            $("<div></div>")
+                                .addClass("card border-dark h-100")
+                                .append(
+                                    $("<img></img>")
+                                        .addClass("card-img-top")
+                                        .attr("src", "../img/" + e.eID + "/pro_" + e.pID + "/pro.jpg")
+                                    ,
+                                    $("<div></div>")
+                                        .addClass("card-body")
+                                        .append(
+                                            $("<h5></h5>")
+                                                .addClass("card-title text-truncate")
+                                                .text(e.pName),
+                                            $("<p></p>")
+                                                .addClass("card-text ellipsis")
+                                                .text(e.descript),
+                                            $("<a></a>")
+                                                .addClass("stretched-link")
+                                                .attr("href", "pro.php?eID=" + e.eID + "&pID=" + e.pID)
+                                    ),
+                                    $("<div></div>")
+                                        .addClass("card-footer text-truncate")
+                                        .text(e.author)
+                                )
+                    );
+                    row.append(pro);
+                }
+            });
+            $("#product").append(row);
+        }else {
+            $("#product").hide();
+        }
+        
     }
 });
 // 展覽收藏
