@@ -20,8 +20,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link" href="#" id=""><span class="align-middle">入場時間</span></a>
-                    <a class="nav-link" href="#" id=""><span class="align-middle">我的展覽</span></a>
                     <a class="nav-link" href="register.php?id=m" id="register" style="display: none;"><span
                             class="align-middle">註冊</span></a>
                     <a class="nav-link" href="login.php" id="login" style="display: none;"><span
@@ -41,7 +39,10 @@
         </div>
     </nav>
     <div class="container">
-        <div class="my-5" id="product">
+        <div class="my-5">
+            <div>
+                <a class="btn btn-secondary rounded-pill py-0 mb-2" id="exh">展覽名稱</a>
+            </div>
             <div class="d-flex">
                 <div>
                     <h3>入場資訊</h3>
@@ -49,7 +50,7 @@
                 <div class="ms-auto">
                     <form>
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="會員帳號" aria-label="Recipient's username" aria-describedby="btn" name="acc" id="acc" maxlength="30">
+                            <input type="text" class="form-control" placeholder="會員帳號" aria-label="Recipient's username" aria-describedby="btn" name="account" id="acc_input" maxlength="30">
                             <button class="btn btn-outline-secondary" type="submit" id="btn">入場</button>
                         </div>
                     </form>
@@ -61,21 +62,19 @@
                     <table class="table text-nowrap align-middle table-hover">
                         <thead>
                             <tr>
-                                <th scope="col">
-                                    會員帳號
-                                </th>
                                 <th scope="col">入場時間</th>
+                                <th scope="col">姓名</th>
+                                <th scope="col">性別</th>
+                                <th scope="col">電話</th>
                             </tr>
                         </thead>
-                        <tbody id="pro_list">
-                            <tr>
-                                <td>
-                                    acc
-                                </td>
-                                <td>
-                                    2021-05-11 09:43:43
-                                </td>
-                            </tr>
+                        <tbody id="att_list">
+                            <!-- <tr>
+                                <td>2021-05-11 09:43:43</td>
+                                <td>陳Ｏ睿</td>
+                                <td>男</td>
+                                <td>0968-775633</td>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
@@ -85,7 +84,6 @@
     <script type="text/javascript" src="../js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="../js/vjs/attend.js"></script>
-
 </body>
 
 </html>
