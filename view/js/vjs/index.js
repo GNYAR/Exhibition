@@ -51,7 +51,6 @@ $.ajax({
         let today = new Date();
         let d = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
         // row
-        // document.createElement('div');
         let row = $("<div></div>")
             .addClass("row row-cols-1 row-cols-lg-2 row-cols-xl-3 p-4 g-4");
         res.forEach(e => {

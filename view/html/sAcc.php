@@ -25,8 +25,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link" href="#member" id="info"><span class="align-middle">基本資料</span></a>
-                    <a class="nav-link" href="#exhibition" id="exh"><span class="align-middle">展覽列表</span></a>
                     <a class="nav-link" href="register.php?id=m" id="register"><span class="align-middle">註冊</span></a>
                     <a class="nav-link" href="login.php" id="login"><span class="align-middle">登入</span></a>
                     <a class="nav-link" href="acc.php" id="acc">
@@ -35,7 +33,6 @@
                         </svg>
                         <span class="align-middle" id="account"></span>
                     </a>
-                    <a class="nav-link" href="index.php" id="home"><span class="align-middle">回首頁</span></a>
                     <a class="nav-link" href="index.php" id="logout"><span class="align-middle">登出</span></a>
                 </div>
             </div>

@@ -13,6 +13,32 @@ $.ajax({
             $("#register").hide();
             $("#login").hide();
             $("#account").text(res.result[0]);
+            // 展覽資訊
+            $.ajax({
+                type: "POST",
+                url: "../../api/command.php",
+                data: {
+                    key: 302,
+                    eID: eID
+                },
+                success: (response) => {
+                    let exh = JSON.parse(response).result;
+                    if (exh.sAccount != res.result[0]) {
+                        location.href = "/";
+                    }
+                    let start = exh.start;
+                    let end = exh.end;
+                    $("#exh")
+                        .text(exh.eName + "　［" + start + "～" + end + "］")
+                        .attr("href", "exhAdmin.php?eID=" + eID);
+                    // today
+                    let today = new Date();
+                    let d = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+                    if (start > d || d > end){
+                        $("#f").hide();
+                    }
+                }
+            });
             // 入場紀錄
             $.ajax({
                 type: "POST",

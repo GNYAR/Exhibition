@@ -89,9 +89,6 @@ $.ajax({
         }else{
             $("#acc").hide();
             $("#logout").hide();
-            $("#member").hide();
-            $("#collect").hide();
-            $("#record").hide();
         }
     }
 });

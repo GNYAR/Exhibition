@@ -96,7 +96,7 @@
                     </a>
                 </div>
             </div>
-            <div id="pro">
+            <div class="mt-3" id="pro">
                 <div class="table-responsive">
                     <table class="table text-nowrap align-middle table-hover">
                         <thead>
