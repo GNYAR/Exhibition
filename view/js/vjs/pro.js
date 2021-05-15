@@ -44,6 +44,7 @@ $.ajax({
             $("#acc").hide();
             $("#logout").hide();
             $("#collect").hide();
+            $("#vote").hide();
         }
     }
 });
@@ -119,7 +120,7 @@ $.ajax({
         });
     }
 });
-// 展覽收藏
+// 收藏
 $("#collect").click(() => {
     if(isCollect){
         $.ajax({
@@ -165,4 +166,23 @@ $("#collect").click(() => {
         });
     }
     this.blur();
+});
+
+// 投票
+$("#vote").click(()=>{
+    if(confirm("確定要投?")){
+        $.ajax({
+            type: "POST",
+            url: "../../api/command.php",
+            data: {
+                key: 600,
+                acc: account,
+                eID: eID,
+                pID: pID
+            },
+            success: (response) => {
+                alert("投票成功");
+            }
+        });
+    }
 });
