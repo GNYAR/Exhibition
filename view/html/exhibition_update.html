@@ -7,7 +7,7 @@
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="../css/utility.css">
-    <title>修改作品</title>
+    <title>修改展覽</title>
 </head>
 
 <body>
@@ -42,7 +42,7 @@
         <div class="my-4">
             <div class="d-flex">
                 <div>
-                    <h3>修改作品</h3>
+                    <h3>修改展覽</h3>
                 </div>
             </div>
         </div>    
@@ -54,7 +54,7 @@
                                 <tbody id="exh_list">
                                     <tr>
                                         <td>
-                                            <a class="btn border-0 w-100 text-start fw-bolder">編輯作品圖片</a>
+                                            <a class="btn border-0 w-100 text-start fw-bolder">編輯展覽圖片</a>
                                         </td>
                                         <td>
                                             <a class="btn btn-secondary rounded-pill py-0 " data-toggle="collapse"
@@ -69,7 +69,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <a class="btn border-0 w-100 text-start fw-bolder">編輯作品名稱</a>
+                                            <a class="btn border-0 w-100 text-start fw-bolder">編輯展覽名稱</a>
                                         </td>
                                         <td>
                                         </td>
@@ -81,7 +81,7 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <a class="btn border-0 w-100 text-start fw-bolder">編輯完成日期</a>
+                                            <a class="btn border-0 w-100 text-start fw-bolder">編輯展覽時間</a>
                                         </td>
                                         <td>
                                         </td>
@@ -93,19 +93,31 @@
                                     </tr>
                                     <tr>
                                         <td>
-                                            <a class="btn border-0 w-100 text-start fw-bolder">編輯作品作者</a>
+                                            <a class="btn border-0 w-100 text-start fw-bolder">編輯展覽地點</a>
                                         </td>
                                         <td>
                                         </td>
                                         <td class="text-center">
                                             <a class="btn btn-secondary rounded-pill py-0 " data-toggle="collapse"
-                                                data-target="#authoru" aria-expanded="false"
-                                                aria-controls="authoru">更改作者</a>
+                                                data-target="#addressu" aria-expanded="false"
+                                                aria-controls="addressu">更改地點</a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <a class="btn border-0 w-100 text-start fw-bolder">編輯作品內容</a>
+                                            <a class="btn border-0 w-100 text-start fw-bolder">編輯展覽標題</a>
+                                        </td>
+                                        <td>
+                                        </td>
+                                        <td class="text-center">
+                                            <a class="btn btn-secondary rounded-pill py-0 " data-toggle="collapse"
+                                                data-target="#titleu" aria-expanded="false"
+                                                aria-controls="titleu">更改標題</a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a class="btn border-0 w-100 text-start fw-bolder">編輯展覽內容</a>
                                         </td>
                                         <td>
                                         </td>
@@ -178,10 +190,10 @@
                                     <div class="card card-body">
                                         <div class="col-12">
                                             <input type="text" readonly class="form-control-plaintext" id="orname"
-                                                value="作品原始名稱">
+                                                value="展覽原始名稱">
                                         </div>
                                         <div class="col-12">
-                                            <input type="text" class="form-control" name="pn" id="pn" maxlength="30"
+                                            <input type="text" class="form-control" name="en" id="en" maxlength="30"
                                                 required>
                                             <button type="submit" class="btn btn-primary w-100">修改</button>
                                         </div>
@@ -191,25 +203,42 @@
                                     <div class="card card-body">
                                         <div class="col-12">
                                             <input type="text" readonly class="form-control-plaintext" id="ordate"
-                                                value="作品完成原始日期">
+                                                value="展覽原始日期">
                                         </div>
                                         <div class="col-12">
-                                            <label for="created" class="form-label">作品完成日</label>
-                                            <input type="date" class="form-control" name="created" id="created" required>
+                                            <label for="startd" class="form-label">起始生日</label>
+                                            <input type="date" class="form-control" name="startd" id="startd" required>
+                                        </div>
+                                        <div class="col-12">
+                                            <label for="endd" class="form-label">結束生日</label>
+                                            <input type="date" class="form-control" name="endd" id="endd" required>
                                         </div>
                                         <div class="col-12">
                                             <button type="submit" class="btn btn-primary w-100">修改</button>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="collapse multi-collapse" id="authoru">
+                                <div class="collapse multi-collapse" id="addressu">
                                     <div class="card card-body">
                                         <div class="col-12">
-                                            <input type="text" readonly class="form-control-plaintext" id="orauthor"
-                                                value="作品原始作者">
+                                            <input type="text" readonly class="form-control-plaintext" id="oraddress"
+                                                value="展覽原始地址">
                                         </div>
                                         <div class="col-12">
-                                            <input type="text" class="form-control" name="author" id="author" maxlength="30"
+                                            <input type="text" class="form-control" name="address" id="address" maxlength="30"
+                                                required>
+                                            <button type="submit" class="btn btn-primary w-100">修改</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="collapse multi-collapse" id="titleu">
+                                    <div class="card card-body">
+                                        <div class="col-12">
+                                            <input type="text" readonly class="form-control-plaintext" id="ortitle"
+                                                value="展覽原始標題">
+                                        </div>
+                                        <div class="col-12">
+                                            <input type="text" class="form-control" name="title" id="title" maxlength="30"
                                                 required>
                                             <button type="submit" class="btn btn-primary w-100">修改</button>
                                         </div>
@@ -219,7 +248,7 @@
                                     <div class="card card-body">
                                         <div class="col-12">
                                             <input type="text" readonly class="form-control-plaintext" id="orinfo"
-                                                value="作品原始內容">
+                                                value="展覽原始內容">
                                         </div>
                                         <div class="col-12">
                                             <textarea class="form-control" name="info" id="info" rows="5" > </textarea>
