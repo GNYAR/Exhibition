@@ -9,6 +9,7 @@ require_once("inc/getPOST.php");
 require_once("inc/isLogin.php");
 require_once("inc/salt.php");
 $key = getPOST('key');
+$android = @$_POST["android"] or null;
 switch ($key) {
     case 100: // (100, id, acc, pw) 登入
         // 判斷身分
@@ -53,7 +54,9 @@ switch ($key) {
         echo  toJSON(100, array(null));
         break;
     case 130: // (130, id, acc, pw, data)更新會員資料
-        isLogin();
+        if ($android == null){
+            isLogin();
+        }
         // 序列化
         $data = json_decode(getPOST('data'), true);
         $cnt = 0;
@@ -227,7 +230,9 @@ switch ($key) {
         break;
         // 展覽收藏
     case 310: // (310, acc, eID) 收藏展覽
-        isLogin();
+        if ($android == null){
+            isLogin();
+        }
         $sql = "INSERT INTO `exh_collection`(`account`, `eID`) VALUES(?, ?)";
         $res = insert($db_link, $sql, array(getPOST('acc'), getPOST('eID')));
         if (gettype($res) != 'array') {
@@ -240,7 +245,9 @@ switch ($key) {
         echo $json;
         break;
     case 311: // (311, acc) 會員展覽收藏紀錄
-        isLogin();
+        if ($android == null){
+            isLogin();
+        }
         $sql = "SELECT A.`eID`, B.`eName`, B.`sAccount`, C.`sName`, A.`cTime` FROM `exh_collection` AS A JOIN `exhibition` AS B ON A.`eID` = B.`eID` JOIN `sponsor` AS C ON B.`sAccount` = C.`sAccount` WHERE `account`=? ORDER BY A.`cTime` DESC;";
         $res = query($db_link, $sql, array(getPOST('acc')));
         if (gettype($res) != 'array') {
@@ -255,7 +262,9 @@ switch ($key) {
         echo $json;
         break;
     case 312: // (312, acc, eID) 取消收藏展覽
-        isLogin();
+        if ($android == null){
+            isLogin();
+        }
         $sql = "DELETE FROM `exh_collection` WHERE `account`=? AND `eID`=?;";
         $res = insert($db_link, $sql, array(getPOST('acc'), getPOST('eID')));
         if (gettype($res) != 'array') {
@@ -268,7 +277,9 @@ switch ($key) {
         echo $json;
         break;
     case 313: // (313, acc, eID) 會員是否收藏展覽
-        isLogin();
+        if ($android == null){
+            isLogin();
+        }
         $sql = "SELECT * FROM `exh_collection` WHERE `account`=? AND `eID`=?";
         $res = query($db_link, $sql, array(getPOST('acc'), getPOST('eID')));
         if (gettype($res) != 'array') {
@@ -426,7 +437,9 @@ switch ($key) {
         break;
         // 作品收藏
     case 510: // (510, acc, eID, pID) 收藏作品
-        isLogin();
+        if ($android == null){
+            isLogin();
+        }
         $sql = "INSERT INTO `pro_collection`(`account`, `eID`, `pID`) VALUES(?, ?, ?)";
         $res = insert($db_link, $sql, array(getPOST('acc'), getPOST('eID'), getPOST('pID')));
         if (gettype($res) != 'array') {
@@ -439,7 +452,9 @@ switch ($key) {
         echo $json;
         break;
     case 511: // (511, acc) 會員作品收藏紀錄
-        isLogin();
+        if ($android == null){
+            isLogin();
+        }
         $sql = "SELECT A.`eID`, B.`eName`, A.`pID`, C.`pName`, C.`author`, A.`cTime` FROM `pro_collection` AS A JOIN `exhibition` AS B ON A.`eID` = B.`eID` JOIN `product` AS C ON A.`eID` = C.`eID` AND A.`pID` = C.`pID` WHERE `account`=? ORDER BY A.`cTime` DESC;";
         $res = query($db_link, $sql, array(getPOST('acc')));
         if (gettype($res) != 'array') {
@@ -454,7 +469,9 @@ switch ($key) {
         echo $json;
         break;
     case 512: // (512, acc, eID, pID) 取消收藏作品
-        isLogin();
+        if ($android == null){
+            isLogin();
+        }
         $sql = "DELETE FROM `pro_collection` WHERE `account`=? AND `eID`=? AND `pID`=?;";
         $res = insert($db_link, $sql, array(getPOST('acc'), getPOST('eID'), getPOST('pID')));
         if (gettype($res) != 'array') {
@@ -467,7 +484,9 @@ switch ($key) {
         echo $json;
         break;
     case 513: // (513, acc, eID, pID) 會員是否收藏作品
-        isLogin();
+        if ($android == null){
+            isLogin();
+        }
         $sql = "SELECT * FROM `pro_collection` WHERE `account`=? AND `eID`=? AND `pID`=?";
         $res = query($db_link, $sql, array(getPOST('acc'), getPOST('eID'), getPOST('pID')));
         if (gettype($res) != 'array') {
@@ -517,14 +536,27 @@ switch ($key) {
         break;
     case 540: // (540, eID, pID) 刪除作品
         isLogin();
+        $eID = getPOST('eID');
+        $pID = getPOST('pID');
         $sql = "DELETE FROM `product` WHERE `eID`=? AND `pID`=?;";
-        $res = insert($db_link, $sql, array(getPOST('eID'), getPOST('pID')));
+        $res = insert($db_link, $sql, array($eID, $pID));
         if (gettype($res) != 'array') {
             // 10 SQL錯誤
             $json = toJSON(10, $res->errorInfo);
         } else {
             // 100 成功｜89 失敗
             $json = toJSON(($res[0] ? 100 : 89), $res);
+            if ($res[0]) {
+                $dir = realpath(dirname(__FILE__, 2)) . "/view/img/" . $eID . "/pro_" . $pID . "/";
+                $dp = opendir($dir);
+                while ($file = readdir($dp)) {
+                    if(strcmp($file, ".") || strcmp($file, "..")){
+                        @unlink($dir . $file);
+                    }
+                }
+                closedir($dp);
+                rmdir($dir);
+            }
         }
         echo $json;
         break;

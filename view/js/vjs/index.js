@@ -49,7 +49,7 @@ $.ajax({
         let res = JSON.parse(response).result;
         // today
         let today = new Date();
-        let d = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+        let d = today.getFullYear() + "-" + (today.getMonth() + 1).toString().padStart(2, "0") + "-" + today.getDate().toString().padStart(2, "0");
         // row
         let row = $("<div></div>")
             .addClass("row row-cols-1 row-cols-lg-2 row-cols-xl-3 p-4 g-4");

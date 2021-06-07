@@ -160,7 +160,7 @@ $(document).on('click', '#pro_del', function(event){
                 pID: value[1]
             },
             success: (response) => {
-                console.log(response);
+                console.log("remove " + $("#pro" + $(this).val()).text());
             }
         });
         $(this).parent().parent().remove();

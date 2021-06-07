@@ -18,5 +18,6 @@
 | 20210509 |    sAcc   |    v1   |  |
 | 20210511 |    exh    |    v3   | fix product display |
 | 20210514 |   attend  |    v1   |  |
+| 20210607 |   proAdd  |    v1   |  |
 
 ![image](web.jpg)
