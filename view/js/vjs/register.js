@@ -1,4 +1,4 @@
-let setInput = (text, name, type, maxlen, col_sm) => {
+let setInput = (text, name, type, maxlen, col_sm, req = true, def) => {
     let div = $("<div></div>")
         .addClass("col-12" + (col_sm != 12 ? " col-sm-" + col_sm : ""));
     let label = $("<label></label>")
@@ -10,8 +10,9 @@ let setInput = (text, name, type, maxlen, col_sm) => {
         .attr("type", type)
         .attr("name", name)
         .attr("id", name)
-        .prop("required", true);
+        .prop("required", req);
     maxlen == 0 ? null : input.attr("maxlength", maxlen);
+    def == null ? null : input.val(def);
     div.append(label, input);
     return div;
 }
@@ -93,6 +94,7 @@ if (id == 'm') { // 一般會員
     title.text("註冊（主辦方）");
     // setInput
     let acc = setInput('帳號', 'sAccount', 'text', 30, 12);
+    acc.attr("id", "account");
     let pw = setInput('密碼', 'password', 'password', 30, 12);
     let pw2 = setInput('確認密碼', 'pw2', 'password', 30, 12);
     let name = setInput('單位名稱', 'sName', 'text', 30, 12);
@@ -101,8 +103,22 @@ if (id == 'm') { // 一般會員
     phone.find("input")
         .attr("placeholder", "04-22190000")
         .attr("pattern", "[0-9]{2,4}-[0-9]{4,8}");
+    let intro = setInput('簡介標題', 'title', 'text', 30, 12, false);
+    let descript = $("<div></div>")
+        .addClass("col-12")
+        .append(
+            $("<label></label>")
+                .attr("for", "textarea")
+                .addClass("form-label")
+                .text("簡介內容"),
+            $("<textarea></textarea>")
+                .addClass("form-control")
+                .attr("id", "textarea")
+                .attr("name", "descript")
+                .attr("rows", "3")
+    );
     // 加入表單
-    form.append(acc, pw, pw2, name, address, phone);
+    form.append(acc, pw, pw2, name, address, phone, intro, descript);
 }
 let submit = $("<div></div>")
     .addClass("col-12 mt-5")
@@ -212,12 +228,10 @@ $("form").submit((event) => {
             data: JSON.stringify(data)
         },
         success: (response) => {
-            let state = JSON.parse(response).stateCode
-            console.log(state);
-            res = JSON.parse(response).result;
-            if (res && state == 100) {
+            let state = JSON.parse(response).stateCode;
+            if (state == 100) {
                 alert("註冊成功！");
-                location.href = "index.php";
+                location.href = "/";
             }else if(state == 89){
                 $("#accError").remove();
                 $("#account")

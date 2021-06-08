@@ -117,7 +117,7 @@ switch ($key) {
         $data['password'] = crypt($data['password'], $salt);
         // 判斷身分
         if (getPOST('id') == 's') {
-            $fields = ":sAccount, :password, :sName, :address, :phone";
+            $fields = ":sAccount, :password, :sName, :address, :phone, :title, :descript";
             $sql = "INSERT INTO `sponsor` VALUES($fields)";
         } else {
             $fields = ":account, :password, :name, :birth, :sex, :phone";
