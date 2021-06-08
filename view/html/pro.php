@@ -6,6 +6,7 @@
     <title>作品簡介</title>
     <link rel="stylesheet" href="../css/bootstrap.css"/>
     <link rel="stylesheet" href="../css/pinfo.css">
+    <link rel="stylesheet" href="../css/utility.css"/>
 
     </style>
 </head>
@@ -39,7 +40,7 @@
                 <div class="col-lg-10 col-xl-8 offset-lg-1 offset-xl-2">
                     <div class="col-12 d-flex flex-wrap">
                         <div>
-                            <a class="btn btn-secondary rounded-pill py-0 mb-2" id="exh" href="#">所屬展覽</a>
+                            <a class="btn btn-darkred rounded-pill py-0 mb-2" id="exh" href="#">所屬展覽</a>
                         </div>
                         <div class="ms-auto">
                             <button class="btn btn-primary rounded-pill py-0 mb-2" id="collect">

@@ -1,5 +1,7 @@
 let isCollect = false;
 let account = "";
+let eName = "";
+let pName = "";
 // 取得GET值
 let eID = new URL(location.href).searchParams.get('eID');
 let pID = new URL(location.href).searchParams.get('pID');
@@ -40,6 +42,41 @@ $.ajax({
                     }
                 }
             });
+            $.ajax({
+                type: "POST",
+                url: "../../api/command.php",
+                data: {
+                    key: 403,
+                    acc: account,
+                    eID: eID
+                },
+                success: (response) => {
+                    let res = JSON.parse(response);
+                    if(res.stateCode != 100){
+                        $("#vote").hide();
+                    }else{
+                        $.ajax({
+                            type: "POST",
+                            url: "../../api/command.php",
+                            data: {
+                                key: 602,
+                                acc: account,
+                                eID: eID
+                            },
+                            success: (response) => {
+                                let res = JSON.parse(response);
+                                if(res.stateCode == 100){
+                                    $("#vote")
+                                        .text("已投票")
+                                        .prop("disabled", true);
+                                }else{
+                                    
+                                }
+                            }
+                        });
+                    }
+                }
+            });
         }else{
             $("#acc").hide();
             $("#logout").hide();
@@ -75,11 +112,12 @@ $.ajax({
     },
     success: (response) => {
         let res = JSON.parse(response).result[0];
-        console.log(res);
+        eName = res.eName;
+        pName = res.pName;
         $("#exh")
             .attr("href", "exh.php?eID=" + eID)
-            .text(res.eName);
-        $("#pName").text(res.pName);
+            .text(eName);
+        $("#pName").text(pName);
         $("#author").text(res.author);
         $("#date").text(res.date);
         $("#desc").text(res.descript);
@@ -169,21 +207,57 @@ $("#collect").click(() => {
     this.blur();
 });
 
+// 403 {"stateCode":100,"result":[true]} 98 -false
+
 // 投票
 $("#vote").click(()=>{
-    if(confirm("確定要投?")){
-        $.ajax({
-            type: "POST",
-            url: "../../api/command.php",
-            data: {
-                key: 600,
-                acc: account,
-                eID: eID,
-                pID: pID
-            },
-            success: (response) => {
-                alert("投票成功");
+    $.ajax({
+        type: "POST",
+        url: "../../api/command.php",
+        data: {
+            key: 403,
+            acc: account,
+            eID: eID
+        },
+        success: (response) => {
+            let res = JSON.parse(response);
+            if(res.stateCode != 100){
+                alert("您尚未參加過【" + eName + "】，無投票權");
+            }else{
+                $.ajax({
+                    type: "POST",
+                    url: "../../api/command.php",
+                    data: {
+                        key: 602,
+                        acc: account,
+                        eID: eID
+                    },
+                    success: (response) => {
+                        let res = JSON.parse(response);
+                        if(res.stateCode == 100){
+                            alert("您已投票給【" + eName + "】之作品，無法重複投票");
+                        }else{
+                            if(confirm("確定要投票給【" + pName + "】?\n\n--- 每人限投一票 ---")){
+                                $.ajax({
+                                    type: "POST",
+                                    url: "../../api/command.php",
+                                    data: {
+                                        key: 600,
+                                        acc: account,
+                                        eID: eID,
+                                        pID: pID
+                                    },
+                                    success: (response) => {
+                                        alert("投票成功");
+                                        location.reload();
+                                    }
+                                });
+                            }
+                        }
+                    }
+                });
             }
-        });
-    }
+        }
+    });
+    
 });

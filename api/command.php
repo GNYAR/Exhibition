@@ -384,6 +384,21 @@ switch ($key) {
         }
         echo $json;
         break;
+    case 403: // (403, acc, eID) 是否參加過
+        isLogin();
+        $sql = "SELECT * FROM `attend` WHERE `eID` = ? AND `account` = ?;";
+        $res = query($db_link, $sql, array(getPOST('eID'), getPOST('acc')));
+        if (gettype($res) != 'array') {
+            // 10 SQL錯誤
+            $json = toJSON(10, $res->errorInfo);
+        } else if ($res == null) {
+            // 98 查無資料
+            $json = toJSON(98, array(false));
+        } else {
+            $json = toJSON(100, array(true));
+        }
+        echo $json;
+        break;
         // 500 作品
     case 500: // (400, data) 新增作品
         isLogin();
@@ -613,7 +628,22 @@ switch ($key) {
         }
         echo $json;
         break;
-    case 602: // (602, eID) 展覽票數統計
+    case 602: // (602, acc, eID) 是否投票過
+        isLogin();
+        $sql = "SELECT * FROM `vote` WHERE `account` = ? AND `eID` = ?;";
+        $res = query($db_link, $sql, array(getPOST('acc'), getPOST('eID')));
+        if (gettype($res) != 'array') {
+            // 10 SQL錯誤
+            $json = toJSON(10, $res->errorInfo);
+        } else if ($res == null) {
+            // 無紀錄
+            $json = toJSON(98, array(false));
+        } else {
+            $json = toJSON(100, array(true));
+        }
+        echo $json;
+        break;
+    case 603: // (603, eID) 展覽票數統計
         isLogin();
         $sql = "SELECT A.`pID`, B.`pName`, B.`author`, COUNT(A.`account`) AS `count` FROM `vote` AS A JOIN `product` AS B ON A.`eID` = B.`eID` AND A.`pID` = B.`pID` GROUP BY A.`eID` HAVING A.`eID` = ?;";
         $res = query($db_link, $sql, array(getPOST('eID')));
