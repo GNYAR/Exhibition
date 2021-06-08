@@ -15,8 +15,12 @@ let setInput = (text, name, type, maxlen, col_sm) => {
     div.append(label, input);
     return div;
 }
-// 取得GET值
-let id = new URL(location.href).searchParams.get('id');
+let id = "";
+if(location.href.includes('register.php')){
+    id = "m";
+}else{
+    id = "s";
+}
 let context = $("<div></div>")
     .addClass("p-4 mx-auto")
     .css("max-width", "500px");
@@ -25,17 +29,13 @@ let fHead = $("<div></div>")
     .addClass("d-flex flex-wrap align-items-end");
 let title = $("<h5></h5>")
     .addClass("me-auto");
-let href = $("<a></a>")
-    .addClass("btn btn-secondary");
 // 表單
 let form = $("<form></form>")
     .addClass("row g-3 my-3")
     .attr("method", "POST");
 if (id == 'm') { // 一般會員
     // setTitle
-    title.text("註冊（一般會員）");
-    href.attr("href", "register.php?id=s")
-        .text("我是主辦方");
+    title.text("註冊");
     // setInput
     let acc = setInput('帳號', 'account', 'text', 30, 12);
     let pw = setInput('密碼', 'password', 'password', 30, 12);
@@ -91,8 +91,6 @@ if (id == 'm') { // 一般會員
 } else { // 主辦方
     // setTitle
     title.text("註冊（主辦方）");
-    href.attr("href", "register.php?id=m")
-        .text("我是一般會員");
     // setInput
     let acc = setInput('帳號', 'sAccount', 'text', 30, 12);
     let pw = setInput('密碼', 'password', 'password', 30, 12);
@@ -115,11 +113,10 @@ let submit = $("<div></div>")
             .attr("type", "submit")
             .prop("disabled", true)
             .text("註　冊")
-    );
+);
 form.append(submit);
 $(".container").append(
-    context.append(
-        fHead.append(title, href), form)
+    context.append(fHead.append(title, form))
 );
 $(document).ready(() => {
     // 密碼長度

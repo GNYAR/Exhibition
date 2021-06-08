@@ -22,8 +22,9 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link" href="login.php" id="login"><span class="align-middle">登入</span></a>
-                    <a class="nav-link" href="index.php" id="home"><span class="align-middle">回首頁</span></a>
+                    <a class="nav-link" href="register.php" id="register">註冊（會員）</a>
+                    <a class="nav-link" href="login_s.php" id="login">登入（主辦方）</a>
+                    <a class="nav-link" href="index.php" id="home">回首頁</a>
                 </div>
             </div>
         </div>

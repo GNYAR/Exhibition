@@ -84,14 +84,14 @@ $.ajax({
                                     .append(
                                         $("<td></td>").append(
                                             $("<a></a>")
-                                                .addClass("btn btn-outline-dark border-0 w-100 text-start fw-bolder")
+                                                .addClass("btn btn-outline-info text-dark border-0 w-100 text-start fw-bolder")
                                                 .attr("id", "exh" + eID)
                                                 .attr("href", "exh.php?eID=" + eID)
                                                 .text(element.eName)
                                         ),
                                         $("<td></td>").append(
                                             $("<a></a>")
-                                                .addClass("btn btn-secondary rounded-pill py-0")
+                                                .addClass("btn btn-success rounded-pill py-0")
                                                 .attr("href", "sponsor.php?sAcc=" + sAcc)
                                                 .text(sName)
                                         ),
@@ -149,7 +149,7 @@ $.ajax({
                                     .append(
                                         $("<td></td>").append(
                                             $("<a></a>")
-                                                .addClass("btn btn-outline-dark border-0 w-100 text-start fw-bolder")
+                                                .addClass("btn btn-outline-info text-dark border-0 w-100 text-start fw-bolder")
                                                 .attr("href", "pro.php?eID=" + eID + "&pID=" + pID)
                                                 .attr("id", "exh" + eID + "_" + pID)
                                                 .text(element.pName)
@@ -208,13 +208,13 @@ $.ajax({
                                         $("<td></td>").text(time),
                                         $("<td></td>").append(
                                             $("<a></a>")
-                                                .addClass("btn btn-outline-dark border-0 w-100 text-start fw-bolder")
+                                                .addClass("btn btn-outline-info text-dark border-0 w-100 text-start fw-bolder")
                                                 .attr("href", "exh.php?eID=" + eID)
                                                 .text(eName)
                                         ),
                                         $("<td></td>").append(
                                             $("<a></a>")
-                                                .addClass("btn btn-secondary rounded-pill py-0")
+                                                .addClass("btn btn-success rounded-pill py-0")
                                                 .attr("href", "sponsor.php?sAcc=" + sAcc)
                                                 .text(sName)
                                         )

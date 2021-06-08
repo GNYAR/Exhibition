@@ -14,7 +14,9 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light px-2 px-sm-5">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">展覽資訊平台</a>
+            <a class="navbar-brand" href="index.php">
+            <img src="../../../favicon.ico" class="me-2" height="25px">
+            展覽資訊平台</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -40,7 +42,7 @@
             <div class="row py-4 g-1">
                 <div class="col-12 d-flex flex-wrap">
                     <div>
-                        <a class="btn btn-secondary rounded-pill py-0 mb-2" id="sponsor" target="_blank">主辦方</a>
+                        <a class="btn btn-success rounded-pill py-0 mb-2" id="sponsor" target="_blank">主辦方</a>
                     </div>
                     <div class= "ms-auto">
                         <button class="btn btn-primary rounded-pill py-0 mb-2" id="collect">

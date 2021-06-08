@@ -50,7 +50,6 @@ $.ajax({
                     let json = JSON.parse(response);
                     let state = json.stateCode;
                     let res = json.result;
-                    console.log(json);
                     if(state == 98){
                         $("#exh_list").append(
                             $("<h5></h5>")

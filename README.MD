@@ -1,5 +1,8 @@
 ## [EXHIBITION](http://suiio.nutc.edu.tw:2506)
 
+As a Organizer, you should checkout [Organizer](http://suiio.nutc.edu.tw:2506/exhibition/view/html/login_s.php).
+
+
 |    Date  |   Views   | Version |   Note  |
 | -------- |:---------:|:-------:| ------- |
 | 20210331 |   index   |    v1   |  |
@@ -19,5 +22,7 @@
 | 20210511 |    exh    |    v3   | fix product display |
 | 20210514 |   attend  |    v1   |  |
 | 20210607 |   proAdd  |    v1   |  |
+| 20210608 |   exhAdd  |    v1   |  |
+| 20210608 |   UPADTE  |    v1   | icon, color, login, register |
 
 ![image](web.jpg)

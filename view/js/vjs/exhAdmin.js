@@ -124,7 +124,7 @@ $.ajax({
                         .append(
                             $("<td></td>").append(
                                 $("<a></a>")
-                                    .addClass("btn btn-outline-dark border-0 w-100 text-start fw-bolder")
+                                    .addClass("btn btn-outline-info text-dark border-0 w-100 text-start fw-bolder")
                                     .attr("href", "proAdmin.php?eID=" + eID + "&pID=" + pID)
                                     .attr("id", "pro" + eID + "_" + pID)
                                     .text(pName)

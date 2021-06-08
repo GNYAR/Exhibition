@@ -18,13 +18,15 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light px-2 px-sm-5">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">展覽資訊平台</a>
+            <a class="navbar-brand" href="index.php">
+            <img src="../../../favicon.ico" class="me-2" height="25px">
+            展覽資訊平台</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link" href="register.php?id=m" id="register"><span class="align-middle">註冊</span></a>
+                    <a class="nav-link" href="register.php" id="register"><span class="align-middle">註冊</span></a>
                     <a class="nav-link" href="login.php" id="login"><span class="align-middle">登入</span></a>
                     <a class="nav-link" href="acc.php" id="acc">
                         <svg id="person" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-person me-1" viewBox="0 0 16 16">

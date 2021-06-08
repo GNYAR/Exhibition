@@ -1,17 +1,14 @@
-let id = "m";
+let id = "";
+$(document).ready(function () {
+    if(location.href.includes('login.php')){
+        id = "m";
+    }else{
+        id = "s";
+    }
+});
 
 $("#acc").blur(() => {
     $("#pw").val("");
-});
-
-$("#id").click(() => {
-    if ($("#id").prop("checked")){
-        id = "s";
-        $("#id_lab").text("目前身分：主辦方");
-    }else{
-        id = "m";
-        $("#id_lab").text("目前身分：一般會員");
-    }
 });
 
 $("form").submit((event) => {
