@@ -33,7 +33,7 @@ $.ajax({
                         .attr("href", "exhAdmin.php?eID=" + eID);
                     // today
                     let today = new Date();
-                    let d = today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+                    let d = today.getFullYear() + "-" + (today.getMonth() + 1).toString().padStart(2, "0") + "-" + today.getDate().toString().padStart(2, "0");
                     if (start > d || d > end){
                         $("#f").hide();
                     }
@@ -97,6 +97,7 @@ $("#logout").click(()=>{
             console.log(response);
             account = "";
             alert("帳號已登出！");
+            location.href = "/";
         }
     })
 });
@@ -121,9 +122,8 @@ $("form").submit((event) => {
                 $("#acc_input")
                     .removeClass("is-invalid")
                     .addClass("is-valid");
-                console.log(acc);
+                location.reload();
             }else{
-                console.log(state);
                 $("#acc_input")
                     .addClass("is-invalid");
             }

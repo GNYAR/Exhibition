@@ -60,6 +60,7 @@ $("#logout").click(()=>{
             console.log(response);
             account = "";
             alert("帳號已登出！");
+            location.reload();
         }
     })
 });

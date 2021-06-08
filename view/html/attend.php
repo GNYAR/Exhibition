@@ -52,7 +52,7 @@
                 <div class="ms-auto">
                     <form id="f">
                         <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="會員帳號" aria-label="Recipient's username" aria-describedby="btn" name="account" id="acc_input" maxlength="30">
+                            <input type="text" class="form-control" placeholder="會員帳號" aria-label="Recipient's username" aria-describedby="btn" name="account" id="acc_input" maxlength="30"  autofocus>
                             <button class="btn btn-outline-secondary" type="submit" id="btn">入場</button>
                         </div>
                     </form>
