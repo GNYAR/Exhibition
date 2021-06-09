@@ -15,3 +15,10 @@
     background-color: #A80000;
     border-color: #B80000;
 }
+#facebook {
+    color: #4267B2;
+}
+#facebook:hover {
+    color: #4249b2;
+    cursor: pointer;
+}

@@ -56,7 +56,9 @@ $.ajax({
                     let form = $("<form></form>")
                         .addClass("row g-3 my-3")
                         .attr("method", "POST");
-                    let list = $("<div></div>").addClass("list-group p-2");
+                    let list = $("<div></div>")
+                        .addClass("list-group p-2")
+                        .attr("id", "pw_list");
                     if (id == 'm') { // 一般會員
                         // setTitle
                         title.append($("<i></i>").addClass("bi bi-person-lines-fill me-3"), account);
@@ -131,7 +133,13 @@ $.ajax({
                             .attr("placeholder", "目前密碼");
                         // 加入表單
                         list.append(btn_pw, li_pw);
-                        form.append(name, sex, birth, phone, list, confirm);
+                        if (/FB[0-9]{16}/.test(account)){
+                            form.append(name, sex, birth, phone);
+                        }else {
+                            list.append(btn_pw, li_pw);
+                            form.append(name, sex, birth, phone, list, confirm);
+                        }
+
                     } else { // 主辦方
                         // setTitle
                         title.append($("<i></i>").addClass("bi bi-person-lines-fill me-3"), account);
@@ -287,9 +295,14 @@ $.ajax({
                                 data[e.name] = e.value;
                             }
                         });
-                        let confirm = data.confirm;
-                        delete data.pw2;
-                        delete data.confirm;
+                        let confirm = "";
+                        if (/FB[0-9]{16}/.test(account)){
+                            confirm = 'f';
+                        }else{
+                            confirm = data.confirm;
+                            delete data.pw2;
+                            delete data.confirm;
+                        }
                         $.ajax({
                             type: "POST",
                             url: "../../api/command.php",
@@ -306,7 +319,7 @@ $.ajax({
                                 res = JSON.parse(response).result;
                                 if (res && state == 100) {
                                     alert("修改成功！");
-                                    if($("#password").val() != ""){
+                                    if($("#password").val() != "" && confirm != 'f'){
                                         $.ajax({
                                             type: "POST",
                                             url: "../../api/command.php",
@@ -320,7 +333,7 @@ $.ajax({
                                             }
                                         });
                                     }else{
-                                        location.href = "index.php";
+                                        location.href = "acc.php";
                                     }
                                 }else if(state == 99){
                                     $("#confirm")
@@ -334,7 +347,6 @@ $.ajax({
                             }
                         });
                     });
-                    
                 }
             });
         }

@@ -34,7 +34,7 @@ $("form").submit((event) => {
             let res = JSON.parse(response).result;
             if (res && state == 100) {
                 alert("登入成功！");
-                location.href = (id == 'm' ? "index.php" : "sAcc.php");
+                location.href = "/";
             }else if(state == 98){
                 $("#acc")
                     .addClass("is-invalid")
@@ -52,6 +52,109 @@ $("form").submit((event) => {
                             .attr("id", "pwError")
                             .text("密碼錯誤！"));
             }
+        }
+    });
+});
+
+// Google
+/*
+function onSignIn(googleUser) {
+    var profile = googleUser.getBasicProfile();
+    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+    console.log('Name: ' + profile.getName());
+    console.log('Image URL: ' + profile.getImageUrl());
+    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+}    "3977863932299669"
+*/
+// facebook
+$("#facebook").click(() => {
+    FB.login(function(response) {
+        if (response.status === 'connected') {
+            let res = response.authResponse;
+            let acc = "FB" + res.userID;
+            let name = "";
+            FB.api(
+                res.userID,
+                function (response) {
+                    if (response && !response.error) {
+                        name = response.name;
+                        $.ajax({
+                            type: "POST",
+                            url: "../../api/command.php",
+                            data: {
+                                key: 100,
+                                acc: acc,
+                                pw: "f",
+                                id: 'm'
+                            },
+                            success: (response) => {
+                                let state = JSON.parse(response).stateCode
+                                let res = JSON.parse(response).result;
+                                if (res && state == 100) {
+                                    alert("登入成功！");
+                                    location.href = "/";
+                                }else if(state == 98){
+                                    if(confirm("此帳號尚未註冊過本系統，是否進行註冊？")){
+                                        let data = {};
+                                        data['account'] = acc;
+                                        data['password'] = 'f';
+                                        data['name'] = name;
+                                        data['birth'] = '2001-01-01';
+                                        data['sex'] = 'm';
+                                        data['phone'] = '0900123456';
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "../../api/command.php",
+                                            data: {
+                                                key: 200,
+                                                id: 'm',
+                                                data: JSON.stringify(data)
+                                            },
+                                            success: (response) => {
+                                                let state = JSON.parse(response).stateCode;
+                                                if (state == 100) {
+                                                    $.ajax({
+                                                        type: "POST",
+                                                        url: "../../api/command.php",
+                                                        data: {
+                                                            key: 100,
+                                                            acc: acc,
+                                                            pw: "f",
+                                                            id: 'm'
+                                                        },
+                                                        success: (response) => {
+                                                            let state = JSON.parse(response).stateCode
+                                                            let res = JSON.parse(response).result;
+                                                            if (res && state == 100) {
+                                                                alert("登入成功！");
+                                                                location.href = "accEdit.php";
+                                                            }else{
+                                                                alert(state + " Error! - 100");
+                                                                location.reload();
+                                                            }
+                                                        }
+                                                    });
+                                                }else{
+                                                    alert(state + " Error! - 200");
+                                                    location.reload();
+                                                }
+                                            }
+                                        });
+                                    }else {
+                                        location.reload();
+                                    }
+                                }else{
+                                    alert(state + " Error! - 100");
+                                    location.reload();
+                                }
+                            }
+                        });
+                    }
+                }
+            );
+            
+        } else {
+            alert("Facebook Error!");
         }
     });
 });
