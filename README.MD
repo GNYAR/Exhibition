@@ -1,6 +1,6 @@
-## [EXHIBITION](http://suiio.nutc.edu.tw:2506)
+## [EXHIBITION](https://suiio.nutc.edu.tw)
 
-As a Organizer, you should checkout [Organizer](http://suiio.nutc.edu.tw:2506/exhibition/view/html/login_s.php).
+As a Organizer, you should checkout [Organizer](https://suiio.nutc.edu.tw/exhibition/view/html/login_s.php).
 
 
 |    Date  |   Views   | Version |   Note  |
@@ -26,5 +26,6 @@ As a Organizer, you should checkout [Organizer](http://suiio.nutc.edu.tw:2506/ex
 | 20210608 |   UPADTE  |    v1   | icon, color, login, register |
 | 20210609 |    vote   |    v1   | member-side |
 | 20210610 | login /w fb |    v1   | |
+| 20210610 |    vote   |    v2   | sponsor-side |
 
 ![image](web.jpg)

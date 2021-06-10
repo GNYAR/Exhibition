@@ -65,6 +65,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">入場時間</th>
+                                <th scope="col">會員帳號</th>
                                 <th scope="col">姓名</th>
                                 <th scope="col">性別</th>
                                 <th scope="col">電話</th>

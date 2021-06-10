@@ -69,6 +69,7 @@ $.ajax({
                             }
                             let eName = element.eName;
                             let place = element.ePlace;
+                            let cnt = element.c_cnt;
                             $("#exh_list").append(
                                 $("<tr></tr>")
                                     .attr("onClick", "exhAdmin(" + eID + ")")
@@ -78,7 +79,13 @@ $.ajax({
                                         $("<td></td>")
                                             .addClass("fw-bold")
                                             .text(eName),
-                                        $("<td></td>").text (place)
+                                        $("<td></td>").text (place),
+                                        $("<td></td>")
+                                            .addClass("text-center")
+                                            .append (
+                                                $("<i></i>").addClass("bi bi-heart-fill text-danger me-2"),
+                                                cnt
+                                            )
                                 )
                             );
                         });

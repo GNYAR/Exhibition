@@ -1,3 +1,19 @@
+function rank_ico(r, id) {
+    switch (r) {
+        case 1:
+
+            $("#" + id).before($("<i></i>").addClass("bi bi-trophy-fill text-gold me-2 py-1 px-2 rounded-circle bg-danger"));
+            break;
+        case 2:
+            $("#" + id).before($("<i></i>").addClass("bi bi-award-fill text-silver fs-5 me-2 py-1 px-2 rounded-circle bg-primary"));
+            break;
+        case 3:
+            return $("#" + id).before($("<i></i>").addClass("bi bi-bookmark-star-fill text-copper fs-5 me-2 py-1 px-2 rounded-circle bg-secondary"));
+            break;
+        default:
+            break;
+    }
+}
 // 是否登入
 $.ajax({
     type: "POST",
@@ -114,11 +130,24 @@ $.ajax({
                     .text(res[0])
             );
         }else if(state == 100){
+            let rank = [];
             res.forEach(element => {
                 let pID = element.pID;
                 let pName = element.pName;
                 let author = element.author;
-                let date = element.date;
+                // let date = element.date;
+                // let c_cnt = element.c_cnt;
+                let v_cnt = element.v_cnt;
+                if (rank.length == 0) {
+                    rank.push({pID: pID, v: v_cnt});
+                }else {
+                    rank.some((item, index, array) => {
+                        if(v_cnt >= item.v){
+                            rank.splice(index, 0, {pID: pID, v: v_cnt});
+                            return true;
+                        }
+                    });
+                }
                 $("#pro_list").append(
                     $("<tr></tr>")
                         .attr("id", eID)
@@ -131,7 +160,22 @@ $.ajax({
                                     .text(pName)
                             ),
                             $("<td></td>").text(author),
-                            $("<td></td>").text(date),
+                            // $("<td></td>").text(date),
+                            $("<td></td>")
+                                .addClass("text-center")
+                                .append (
+                                    $("<span></span>")
+                                        .attr("id", pID)
+                                        .text(v_cnt)
+                            ),
+                            /*
+                            $("<td></td>")
+                                .addClass("text-center")
+                                .append (
+                                    $("<i></i>").addClass("bi bi-heart-fill text-danger me-2"),
+                                    c_cnt
+                            ),
+                            */
                             $("<td></td>")
                                 .addClass("text-center")
                                 .append(
@@ -144,6 +188,26 @@ $.ajax({
                             )
                     )
                 );
+            });
+            let r = 1;
+            let cnt = 0;
+            let past = 0;
+            rank.some((item, index, array) => {
+                if(item.v == 0){
+                    return true;
+                }else{
+                    if(cnt == 0){
+                        rank_ico(r, item.pID);
+                    }else if(item.v == past){
+                        rank_ico(r, item.pID);
+                    }else if(cnt <= 3){
+                        rank_ico(++r, item.pID);
+                    }else{
+                        return true;
+                    }
+                    cnt++;
+                    past = item.v;
+                }
             });
         }
     }

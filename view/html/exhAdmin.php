@@ -106,7 +106,8 @@
                                 <th scope="col" colspan = "2">
                                     作品資訊
                                 </th>
-                                <th scope="col"></th>
+                                <th class="text-center" scope="col">得票數</th>
+                                <!-- <th class="text-center" scope="col">收藏數</th> -->
                                 <th class="text-center" scope="col">刪除作品</th>
                             </tr>
                         </thead>

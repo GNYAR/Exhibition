@@ -102,6 +102,7 @@
                                 <th scope="col">時間</th>
                                 <th scope="col">名稱</th>
                                 <th scope="col">地點</th>
+                                <th scope="col" class="text-center">收藏數</th>
                             </tr>
                         </thead>
                         <tbody id="exh_list">

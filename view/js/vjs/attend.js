@@ -59,6 +59,7 @@ $.ajax({
                         );
                     }else if(state == 100){
                         res.forEach(element => {
+                            let acc = element.account;
                             let time = element.aTime;
                             let name = element.name;
                             let name_arr = name.split("");
@@ -70,6 +71,7 @@ $.ajax({
                                 $("<tr></tr>")
                                     .append(
                                         $("<td></td>").text(time),
+                                        $("<td></td>").text(acc),
                                         $("<td></td>").text(name),
                                         $("<td></td>").text(sex),
                                         $("<td></td>").text(phone)

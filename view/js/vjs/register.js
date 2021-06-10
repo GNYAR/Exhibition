@@ -41,7 +41,7 @@ if (id == 'm') { // 一般會員
     let acc = setInput('帳號', 'account', 'text', 30, 12);
     let pw = setInput('密碼', 'password', 'password', 30, 12);
     let pw2 = setInput('確認密碼', 'pw2', 'password', 30, 12);
-    let name = setInput('姓名', 'name', 'text', 4, 6);
+    let name = setInput('中文姓名', 'name', 'text', 4, 6);
     let sex = $("<div></div>")
         .addClass("col-12 col-sm-6")
         .append(

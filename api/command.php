@@ -215,7 +215,7 @@ switch ($key) {
         echo $json;
         break;
     case 303: // (303, acc) 取得主辦方展覽資訊
-        $sql = "SELECT A.*, B.`sName`, B.`sAccount` FROM `exhibition` AS A JOIN `sponsor` AS B ON A.`sAccount` = B.`sAccount` WHERE A.`sAccount` = ? ORDER BY A.`start` DESC;";
+        $sql = "SELECT A.*, B.`sName`, B.`sAccount`, IFNULL(C.`c_cnt`, 0) AS `c_cnt` FROM `exhibition` AS A JOIN `sponsor` AS B ON A.`sAccount` = B.`sAccount` LEFT JOIN (SELECT `eID`, COUNT(`account`) AS c_cnt FROM `exh_collection` GROUP BY `eID`) AS C on A.`eID` = C.`eID` WHERE A.`sAccount` = ? ORDER BY A.`start` DESC;";
         $res = query($db_link, $sql, array(getPOST('acc')));
         if (gettype($res) != 'array') {
             // 10 SQL錯誤
@@ -423,7 +423,7 @@ switch ($key) {
         echo $json;
         break;
     case 501: // (501, eID) 取得展覽所有作品
-        $sql = "SELECT * FROM `product` WHERE `eID` = ?;";
+        $sql = "SELECT A.*, IFNULL(B.`c_cnt`, 0) AS `c_cnt`, IFNULL(C.`v_cnt`, 0) AS `v_cnt`  FROM `product` AS A LEFT JOIN (SELECT `pID`, COUNT(`account`) AS c_cnt FROM `pro_collection` GROUP BY `pID`) AS B on A.`pID` = B.`pID` LEFT JOIN (SELECT `pID`, COUNT(`account`) AS v_cnt FROM `vote` GROUP BY `pID`) AS C on A.`pID` = C.`pID` WHERE `eID` = ?;";
         $res = query($db_link, $sql, array(getPOST('eID')));
         if (gettype($res) != 'array') {
             // 10 SQL錯誤

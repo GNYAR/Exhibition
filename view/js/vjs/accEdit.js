@@ -80,7 +80,7 @@ $.ajax({
                             .append(
                                 setInput('新密碼', 'password', 'password', 30, 12, false),
                                 setInput('確認密碼', 'pw2', 'password', 30, 12, false));
-                        let name = setInput('姓名', 'name', 'text', 4, 6, false);
+                        let name = setInput('中文姓名', 'name', 'text', 4, 6, false);
                         let sex = $("<div></div>")
                             .addClass("col-12 col-sm-6")
                             .append(

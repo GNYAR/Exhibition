@@ -40,15 +40,15 @@
         </div>
     </nav>
     <div class="container-lg">
-        <div class='p-4 d-flex'>
+        <div class='p-4 d-flex flex-column flex-md-row'>
             <div id='num'>
             </div>
-            <div class='ms-auto'>
+            <div class='my-3 my-md-0 ms-md-auto'>
                 <select id="sponsor_filter" class="form-select form-select-sm ">
                     <option value="" selected>篩選－主辦方</option>
                 </select>
             </div>
-            <div class='ms-3'>
+            <div class='ms-md-auto'>
                 <select id="date_filter" class="form-select form-select-sm">
                     <option value="" selected>篩選－展覽時間</option>
                     <option value="future">即將開始</option>
