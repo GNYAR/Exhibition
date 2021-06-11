@@ -71,6 +71,13 @@
             </div>
         </div> -->
     </div>
+    <div class="pe-3 pe-md-5 text-end">
+        <div>
+        Icons made by <a href="https://www.freepik.com" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>, 
+        <a href="https://getbootstrap.com/" title="bootstrap">Bootstrap<i class="bi bi-bootstrap-fill bs ms-1"></i></a></div>
+    </div>
+    
+    
     <script type="text/javascript" src="../js/bootstrap.js"></script>
     <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="../js/vjs/index.js"></script>

@@ -25,7 +25,8 @@ As a Organizer, you should checkout [Organizer](https://suiio.nutc.edu.tw/exhibi
 | 20210608 |   exhAdd  |    v1   |  |
 | 20210608 |   UPADTE  |    v1   | icon, color, login, register |
 | 20210609 |    vote   |    v1   | member-side |
-| 20210610 | login /w fb |    v1   | |
+| 20210610 |   login   |    v2   | facebook |
 | 20210610 |    vote   |    v2   | sponsor-side |
+| 20210611 |   login   |    v3   |  |
 
 ![image](web.jpg)
