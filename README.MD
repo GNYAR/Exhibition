@@ -28,5 +28,6 @@ As a Organizer, you should checkout [Organizer](https://suiio.nutc.edu.tw/exhibi
 | 20210610 |   login   |    v2   | facebook |
 | 20210610 |    vote   |    v2   | sponsor-side |
 | 20210611 |   login   |    v3   |  |
+| 20210614 |    exh    |    v4   | update date, place, carousel |
 
 ![image](web.jpg)

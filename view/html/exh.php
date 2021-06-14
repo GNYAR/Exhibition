@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap-icons.css">
     <link rel="stylesheet" type="text/css" href="../css/utility.css">
     <title>展覽資訊</title>
 </head>
@@ -42,7 +43,7 @@
             <div class="row py-4 g-1">
                 <div class="col-12 d-flex flex-wrap">
                     <div>
-                        <a class="btn btn-success rounded-pill py-0 mb-2" id="sponsor" target="_blank">主辦方</a>
+                        <a class="btn btn-success rounded-pill py-0 mb-2" id="sponsor" target="_blank"></a>
                     </div>
                     <div class= "ms-auto">
                         <button class="btn btn-primary rounded-pill py-0 mb-2" id="collect">
@@ -50,7 +51,7 @@
                         </button>
                     </div>
                 </div>
-                <div class="col-12 p-1 bg-dark">
+                <div class="col-12 p-1 shadow-sm">
                     <div id="imgCarousel" class="carousel slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
                             <!-- <button type="button" data-bs-target="#imgCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -74,18 +75,20 @@
             </div>
             <div class="row row-cols-1 g-2">
                 <div class="col">
-                    <h1 id="eName">展覽名稱</h1>
+                    <h1 id="eName"></h1>
                 </div>
-                <div class="col">
-                    <ul>
-                        <li id="date">日期：2021-03-09～2021-03-10</li>
-                        <li id="place">地點：中商大樓圖書館門口</li>
-                    </ul>
+                <div class="col row">
+                    <div class="col-auto card text-nowrap overflow-auto border-0 shadow dp">
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item dp"><i class="bi bi-calendar2-minus-fill pe-2"></i><span id="date"></span></li>
+                            <li class="list-group-item dp"><i class="bi bi-geo-alt-fill pe-2"></i><span id="place"></span></li>
+                        </ul>
+                    </div>
+                    <!-- "col col-sm-9 col-lg-6 col-xl-5 card text-nowrap overflow-auto ps-3" -->
                 </div>
                 <div class="col p-3">
-                    <h3 id="title">標題</h3>
+                    <h3 id="title"></h3>
                     <p id="descript">
-                        內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容內容
                     </p>
                 </div>
             </div>
@@ -124,7 +127,7 @@
             </div> -->
         </div>
     </div>
-    <script type="text/javascript" src="../js/bootstrap.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.bundle.js"></script>
     <script type="text/javascript" src="../js/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="../js/vjs/exh.js"></script>
 </body>

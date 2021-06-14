@@ -34,3 +34,9 @@
 .bs {
     color: #7952B3;
 }
+.dp {
+    background-color: cornsilk;
+}
+.carousel-item{
+    transition: transform 2s ease, opacity .5s ease-out;
+}

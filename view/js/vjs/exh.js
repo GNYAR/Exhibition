@@ -119,8 +119,8 @@ $.ajax({
         });
         // 展覽資訊
         $("#eName").text(res.eName);
-        $("#date").text("日期：" + res.start + "~" + res.end);
-        $("#place").text("地點：" + res.ePlace);
+        $("#date").text(res.start + "~" + res.end);
+        $("#place").text(res.ePlace);
         $("#title").text(res.title);
         $("#descript").html(res.descript.replace(/\n/g,'<br/>'));
     }
