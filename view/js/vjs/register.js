@@ -231,7 +231,7 @@ $("form").submit((event) => {
             let state = JSON.parse(response).stateCode;
             if (state == 100) {
                 alert("註冊成功！");
-                location.href = "/";
+                location.href = (id == 's' ? "login_s.php" : "login.php");
             }else if(state == 89){
                 $("#accError").remove();
                 $("#account")
