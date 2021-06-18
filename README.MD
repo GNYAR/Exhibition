@@ -2,6 +2,7 @@
 
 As a Organizer, you should checkout [Organizer](https://suiio.nutc.edu.tw/exhibition/view/html/login_s.php).
 
+### [Intro](https://youtu.be/zqtHWmxst50)
 
 |    Date  |   Views   | Version |   Note  |
 | -------- |:---------:|:-------:| ------- |
