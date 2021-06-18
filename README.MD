@@ -1,9 +1,10 @@
-### [Exhibition (https://suiio.nutc.edu.tw)](https://suiio.nutc.edu.tw)
+## Introduce Video (https://youtu.be/zqtHWmxst50)
 
+![image](favico.ico)
 
-As a Organizer, you should checkout [Organizer (https://suiio.nutc.edu.tw/exhibition/view/html/login_s.php)](https://suiio.nutc.edu.tw/exhibition/view/html/login_s.php).
+### Exhibition (https://suiio.nutc.edu.tw)
 
-### [introduce Video(https://youtu.be/zqtHWmxst50)](https://youtu.be/zqtHWmxst50)
+As a Organizer, you should checkout Organizer (https://suiio.nutc.edu.tw/exhibition/view/html/login_s.php).
 
 ## Update Record
 |    Date  |   Views   | Version |   Note  |
