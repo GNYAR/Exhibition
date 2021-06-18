@@ -1,8 +1,11 @@
 ## [EXHIBITION](https://suiio.nutc.edu.tw)
+(https://suiio.nutc.edu.tw)
 
 As a Organizer, you should checkout [Organizer](https://suiio.nutc.edu.tw/exhibition/view/html/login_s.php).
+(https://suiio.nutc.edu.tw/exhibition/view/html/login_s.php)
 
-### [Intro](https://youtu.be/zqtHWmxst50)
+### [introduce Video](https://youtu.be/zqtHWmxst50)
+(https://youtu.be/zqtHWmxst50)
 
 |    Date  |   Views   | Version |   Note  |
 | -------- |:---------:|:-------:| ------- |
