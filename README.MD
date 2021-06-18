@@ -1,12 +1,11 @@
-## [EXHIBITION](https://suiio.nutc.edu.tw)
-(https://suiio.nutc.edu.tw)
+### [Exhibition (https://suiio.nutc.edu.tw)](https://suiio.nutc.edu.tw)
 
-As a Organizer, you should checkout [Organizer](https://suiio.nutc.edu.tw/exhibition/view/html/login_s.php).
-(https://suiio.nutc.edu.tw/exhibition/view/html/login_s.php)
 
-### [introduce Video](https://youtu.be/zqtHWmxst50)
-(https://youtu.be/zqtHWmxst50)
+As a Organizer, you should checkout [Organizer (https://suiio.nutc.edu.tw/exhibition/view/html/login_s.php)](https://suiio.nutc.edu.tw/exhibition/view/html/login_s.php).
 
+### [introduce Video(https://youtu.be/zqtHWmxst50)](https://youtu.be/zqtHWmxst50)
+
+## Update Record
 |    Date  |   Views   | Version |   Note  |
 | -------- |:---------:|:-------:| ------- |
 | 20210331 |   index   |    v1   |  |
@@ -33,5 +32,3 @@ As a Organizer, you should checkout [Organizer](https://suiio.nutc.edu.tw/exhibi
 | 20210610 |    vote   |    v2   | sponsor-side |
 | 20210611 |   login   |    v3   |  |
 | 20210614 |    exh    |    v4   | update date, place, carousel |
-
-![image](web.jpg)
