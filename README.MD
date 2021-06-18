@@ -1,6 +1,6 @@
 ## Introduce Video (https://youtu.be/zqtHWmxst50)
 
-![image](favico.ico)
+![image](favico.png)
 
 ### Exhibition (https://suiio.nutc.edu.tw)
 
