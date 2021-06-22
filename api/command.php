@@ -34,6 +34,14 @@ switch ($key) {
                 $json = toJSON(100, $res);
                 $_SESSION['username'] = getPOST('acc');
                 $_SESSION['role'] = getPOST('id');
+                if (isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
+                    $user_ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+                else if (isset($_SERVER["HTTP_CLIENT_IP"]))
+                    $user_ip = $_SERVER["HTTP_CLIENT_IP"];
+                else
+                    $user_ip=$_SERVER["REMOTE_ADDR"];
+                $sql = "UPDATE `member` SET `ip`='".$user_ip."' WHERE `account`='".getPOST('acc')."'";
+                $res = insert($db_link, $sql, array(null));
             } else {
                 // 99 密碼錯誤
                 $json = toJSON(99, array("Wrong Password"));
