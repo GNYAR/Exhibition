@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- 主機： 127.0.0.1
--- 產生時間： 2021-06-16 14:25:55
+-- 產生時間： 2021-06-22 10:13:10
 -- 伺服器版本： 10.4.18-MariaDB
 -- PHP 版本： 7.4.16
 
@@ -49,6 +49,7 @@ INSERT INTO `attend` (`account`, `eID`, `aTime`) VALUES
 ('123', 11, '2021-06-08 14:44:06'),
 ('FB3977863932299669', 11, '2021-06-10 03:15:15'),
 ('k', 11, '2021-06-10 05:06:57'),
+('s1110634026', 11, '2021-06-17 05:07:56'),
 ('s901121s901121', 1, '2021-05-13 13:52:15'),
 ('s901121s901121', 11, '2021-06-08 13:47:29'),
 ('test', 1, '2021-05-13 13:59:00'),
@@ -122,8 +123,13 @@ TRUNCATE TABLE `exh_collection`;
 --
 
 INSERT INTO `exh_collection` (`account`, `eID`, `cTime`) VALUES
+('000', 11, '2021-06-19 17:41:22'),
+('000', 14, '2021-06-19 17:41:15'),
 ('123', 2, '2021-05-23 09:26:08'),
 ('123', 8, '2021-06-14 09:55:54'),
+('jrong', 11, '2021-06-22 07:44:44'),
+('jrong', 13, '2021-06-21 03:21:30'),
+('jrong', 14, '2021-06-21 03:21:23'),
 ('s901121s901121', 6, '2021-04-14 12:35:58'),
 ('s901121s901121', 7, '2021-04-14 12:35:53'),
 ('s901121s901121', 8, '2021-04-29 12:58:21'),
@@ -139,6 +145,33 @@ INSERT INTO `exh_collection` (`account`, `eID`, `cTime`) VALUES
 -- --------------------------------------------------------
 
 --
+-- 資料表結構 `log_member`
+--
+
+DROP TABLE IF EXISTS `log_member`;
+CREATE TABLE `log_member` (
+  `time` timestamp NOT NULL DEFAULT current_timestamp(),
+  `account` varchar(30) NOT NULL,
+  `ip` varchar(30) NOT NULL,
+  `action` varchar(30) NOT NULL,
+  `str` varchar(80) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 資料表新增資料前，先清除舊資料 `log_member`
+--
+
+TRUNCATE TABLE `log_member`;
+--
+-- 傾印資料表的資料 `log_member`
+--
+
+INSERT INTO `log_member` (`time`, `account`, `ip`, `action`, `str`) VALUES
+('2021-06-22 08:09:33', 's901121s901121', '36.233.28.12', 'UPDATE', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- 資料表結構 `member`
 --
 
@@ -146,10 +179,11 @@ DROP TABLE IF EXISTS `member`;
 CREATE TABLE `member` (
   `account` varchar(30) NOT NULL,
   `password` varchar(20) NOT NULL,
-  `name` varchar(5) NOT NULL,
+  `name` varchar(10) NOT NULL,
   `birth` date NOT NULL,
   `sex` char(1) NOT NULL,
-  `phone` char(10) NOT NULL
+  `phone` char(10) NOT NULL,
+  `ip` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -161,26 +195,53 @@ TRUNCATE TABLE `member`;
 -- 傾印資料表的資料 `member`
 --
 
-INSERT INTO `member` (`account`, `password`, `name`, `birth`, `sex`, `phone`) VALUES
-('0975349939', '~fUMRpu5lUdRQ', 'eric', '2021-05-11', 'm', '0912345678'),
-('123', '{_fcpOdy12rmo', '測試-1', '2021-05-21', 'm', '0912131213'),
-('FB3977863932299669', 'l`s.Kbdf.OUR.', '陳言睿', '2001-01-01', 'm', '0911111111'),
-('jrong', 'ddN29Q7Yq3xeA', 'JR', '2021-06-16', 'm', '0928047882'),
-('jrong123', 'luonqLwT5RYFI', 'JR', '2001-09-13', 'm', '0928047882'),
-('k', '{jAvc.xR3kr96', '流域均', '2021-04-04', 'f', '0963436215'),
-('s901121s901121', 'u[s8kp9bHngIo', '陳言睿', '2001-11-21', 'f', '0968775633'),
-('test', 'hd6/RxmYG5mTQ', '測試-55', '2002-09-13', 'm', '0913143456'),
-('test123', 'p{Vx3DL/6vIs2', 'wel', '2021-03-30', 'm', '0909090909'),
-('test2', '`^MIQuN2GndOs', '測試-3', '2002-09-13', 'm', '0913143456'),
-('test4', 'rbkQDGT5i7feQ', '測試-4', '2021-06-10', 'm', '0928047882'),
-('test5', 'bxOxJV/LXLCnc', '測試-5', '2021-06-10', 'm', '0912345678'),
-('test6', 'chaacSAmiuyzY', '測試-6', '2021-06-10', 'm', '0912345678'),
-('test7', 'fnHW5DTWPrW0.', '測試-7', '2021-06-10', 'm', '0912345678'),
-('test8', 'i`F6eaJ9wFVNk', '測試-8', '2021-06-10', 'm', '0912345678'),
-('testrong', 'li8IUgFTanhu.', '王大明', '2021-07-10', 'f', '0925047885'),
-('wkwk', '`jjxnILSl//is', 'jrong', '2001-09-13', 'm', '0913123456'),
-('wkwk59468', 'c_orukSPcBp4M', '王大明', '2021-05-05', 'm', '0925047885'),
-('zzz123', 'a~R6DJKQAD2v6', '黃仔魚', '2021-04-01', 'm', '0987878787');
+INSERT INTO `member` (`account`, `password`, `name`, `birth`, `sex`, `phone`, `ip`) VALUES
+('000', 'l_THs8cFOpF4c', '123', '2021-06-01', 'm', '0900000000', NULL),
+('0975349939', '~fUMRpu5lUdRQ', 'eric', '2021-05-11', 'm', '0912345678', NULL),
+('111', 'ffKAUU/hVMFA6', 'ABC', '2021-06-20', 'f', '0900123456', NULL),
+('123', '{_fcpOdy12rmo', '測試-1', '2021-05-21', 'm', '0912131213', NULL),
+('AAA', 'i^nxRs2/i6eqM', 'AAA', '2021-06-06', 'f', '0900123456', NULL),
+('FB3553191908115987', 'hrfDNj1hhI9Hg', 'A', '2001-01-01', 'm', '0888888888', NULL),
+('FB3977863932299669', 'l`s.Kbdf.OUR.', '陳言睿', '2001-01-01', 'm', '0911111111', NULL),
+('jrong', 'ndttn8O35ptwQ', 'JR', '2021-06-16', 'm', '0928047882', NULL),
+('jrong123', 'luonqLwT5RYFI', 'JR', '2001-09-13', 'm', '0928047882', NULL),
+('k', '{jAvc.xR3kr96', '流域均', '2021-04-04', 'f', '0963436215', NULL),
+('s1110634026', 'h[XtnGGumEX4E', '廖瑋振', '2011-09-08', 'm', '0911223345', NULL),
+('s901121s901121', 'u[s8kp9bHngIo', '陳言睿', '2001-11-21', 'm', '0968775622', '36.233.28.12'),
+('test', '`^MIQuN2GndOs', '測試帳號', '2021-06-11', 'm', '0900123456', NULL),
+('test123', 'p{Vx3DL/6vIs2', 'wel', '2021-03-30', 'm', '0909090909', NULL),
+('test2', '`^MIQuN2GndOs', '測試-3', '2002-09-13', 'm', '0913143456', NULL),
+('test4', 'rbkQDGT5i7feQ', '測試-4', '2021-06-10', 'm', '0928047882', NULL),
+('test5', 'bxOxJV/LXLCnc', '測試-5', '2021-06-10', 'm', '0912345678', NULL),
+('test6', 'chaacSAmiuyzY', '測試-6', '2021-06-10', 'm', '0912345678', NULL),
+('test7', 'fnHW5DTWPrW0.', '測試-7', '2021-06-10', 'm', '0912345678', NULL),
+('test8', 'i`F6eaJ9wFVNk', '測試-8', '2021-06-10', 'm', '0912345678', NULL),
+('testrong', 'li8IUgFTanhu.', '王大明', '2021-07-10', 'f', '0925047885', NULL),
+('wkwk', '`jjxnILSl//is', 'jrong', '2001-09-13', 'm', '0913123456', NULL),
+('wkwk59468', 'c_orukSPcBp4M', '王大明', '2021-05-05', 'm', '0925047885', NULL),
+('yyyu', 'ni06UiydWTG3k', 'aaa', '2021-06-05', 'm', '0912345678', NULL),
+('zzz123', 'a~R6DJKQAD2v6', '黃仔魚', '2021-04-01', 'm', '0987878787', NULL),
+('廖建榕', 'ucN1OXDuwjmE.', '廖建', '2021-06-10', 'm', '0958648545', NULL);
+
+--
+-- 觸發器 `member`
+--
+DROP TRIGGER IF EXISTS `member_intsert`;
+DELIMITER $$
+CREATE TRIGGER `member_intsert` AFTER INSERT ON `member` FOR EACH ROW BEGIN
+	INSERT INTO `log_member`(`account`, `ip`, `action`)
+    VALUE(NEW.`account`, NEW.`ip`, "INSERT");
+END
+$$
+DELIMITER ;
+DROP TRIGGER IF EXISTS `member_update`;
+DELIMITER $$
+CREATE TRIGGER `member_update` AFTER UPDATE ON `member` FOR EACH ROW BEGIN
+	INSERT INTO `log_member`(`account`, `ip`, `action`)
+    VALUE(NEW.`account`, NEW.`ip`, "UPDATE");
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -274,12 +335,15 @@ TRUNCATE TABLE `pro_collection`;
 
 INSERT INTO `pro_collection` (`account`, `eID`, `pID`, `cTime`) VALUES
 ('123', 8, 4, '2021-06-14 09:55:59'),
+('jrong', 11, 27, '2021-06-21 03:21:38'),
+('jrong', 11, 29, '2021-06-21 03:21:43'),
+('jrong', 11, 30, '2021-06-21 03:21:51'),
 ('s901121s901121', 8, 13, '2021-04-29 13:03:43'),
 ('s901121s901121', 8, 22, '2021-04-29 13:03:55'),
 ('s901121s901121', 11, 30, '2021-06-11 05:58:18'),
+('test', 8, 4, '2021-06-19 17:36:07'),
 ('test', 8, 5, '2021-06-09 17:57:57'),
 ('test', 8, 6, '2021-06-09 17:58:01'),
-('test', 11, 30, '2021-06-16 02:04:03'),
 ('wkwk59468', 8, 24, '2021-05-05 02:12:17');
 
 -- --------------------------------------------------------
@@ -377,6 +441,12 @@ ALTER TABLE `exhibition`
 ALTER TABLE `exh_collection`
   ADD PRIMARY KEY (`account`,`eID`),
   ADD KEY `exh_collection_ibfk_2` (`eID`);
+
+--
+-- 資料表索引 `log_member`
+--
+ALTER TABLE `log_member`
+  ADD PRIMARY KEY (`time`,`account`);
 
 --
 -- 資料表索引 `member`
