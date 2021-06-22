@@ -39,7 +39,7 @@
         <div class="p-4 m-auto" style="max-width: 500px; ">
             <div class="text-center">
                 <a href="/" id="home" title="回首頁">
-                    <img src="../../../favicon.ico" class="me-2" height="100px">
+                    <img src="../../favicon.ico" class="me-2" height="100px">
                 </a>
                 <h5 class="mt-3">登入</h5>
             </div>
