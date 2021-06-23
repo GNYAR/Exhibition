@@ -120,6 +120,13 @@ switch ($key) {
     case 200: // (200, id, data) 註冊
         // 序列化
         $data = json_decode(getPOST('data'), true);
+        if (isset($_SERVER["HTTP_X_FORWARDED_FOR"]))
+            $user_ip = $_SERVER["HTTP_X_FORWARDED_FOR"];
+        else if (isset($_SERVER["HTTP_CLIENT_IP"]))
+            $user_ip = $_SERVER["HTTP_CLIENT_IP"];
+        else
+            $user_ip=$_SERVER["REMOTE_ADDR"];
+        $data['ip'] = $user_ip;
         // password hash
         $salt = salt();
         $data['password'] = crypt($data['password'], $salt);
@@ -128,7 +135,7 @@ switch ($key) {
             $fields = ":sAccount, :password, :sName, :address, :phone, :title, :descript";
             $sql = "INSERT INTO `sponsor` VALUES($fields)";
         } else {
-            $fields = ":account, :password, :name, :birth, :sex, :phone";
+            $fields = ":account, :password, :name, :birth, :sex, :phone, :ip";
             $sql = "INSERT INTO `member` VALUES($fields)";
         }
         // 新增
